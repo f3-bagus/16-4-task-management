@@ -59,7 +59,7 @@ export const getTaskSectionByIdController = async (req, res) => {
 export const getTaskSectionsController = async (req, res) => {
   try {
     const { project_id } = req.params;
-    const userId = req.user.id; // Assumes user ID is stored in req.user
+    const userId = req.user.id;
 
     if (isNaN(project_id)) {
       return res.status(400).json({ error: 'Invalid project ID' });
