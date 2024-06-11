@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 
 // layouts
 import Admin from "./layouts/Admin.js";
@@ -12,19 +12,17 @@ import Index from "./views/Index.js";
 
 function App() {
   return (
-    <div className="App">
-      <Routes>
-        {/* add routes with layouts */}
-        <Route path="/admin/*" element={<Admin />} />
-        <Route path="/auth/*" element={<Auth />} />
-        {/* add routes without layouts */}
-        <Route path="/landing" element={<Landing />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/" element={<Index />} />
-        {/* add redirect for first page */}
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
-    </div>
+    <Routes>
+      {/* add routes with layouts */}
+      <Route path="/admin/*" element={<Admin />} />
+      <Route path="/auth/*" element={<Auth />} />
+      {/* add routes without layouts */}
+      <Route path="/landing" element={<Landing />} />
+      <Route path="/profile" element={<Profile />} />
+      <Route path="/" element={<Index />} />
+      {/* add redirect for first page */}
+      <Route path="*" element={<Navigate to="/" />} />
+    </Routes>
   );
 }
 
