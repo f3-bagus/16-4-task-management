@@ -8,7 +8,7 @@
 // }
 // @type {import('tailwindcss').Config}
 const colors = require("tailwindcss/colors");
-const forms = require('@tailwindcss/forms');
+const forms = require("@tailwindcss/forms");
 const plugin = require("tailwindcss/plugin");
 module.exports = {
   purge: {
@@ -105,9 +105,8 @@ module.exports = {
     "disabled",
   ],
   plugins: [
-    
     require("@tailwindcss/forms"),
-    plugin(function ({ addComponents, theme }){
+    plugin(function ({ addComponents, theme }) {
       const screens = theme("screens", {});
       addComponents([
         {

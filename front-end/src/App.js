@@ -19,7 +19,7 @@ function App() {
       {/* add routes without layouts */}
       <Route path="/landing" element={<Landing />} />
       <Route path="/profile" element={<Profile />} />
-      <Route path="/" element={<Index />} />
+      <Route path="/" element={<Landing />} />
       {/* add redirect for first page */}
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
