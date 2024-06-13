@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 export default function Register() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -148,6 +148,13 @@ export default function Register() {
                     </button>
                   </div>
                 </form>
+              </div>
+            </div>
+            <div className="flex flex-wrap mt-6 relative">
+              <div className="w-full text-center">
+                <Link to="/auth/login" className="text-blueGray-200">
+                  <small>Back to Login</small>
+                </Link>
               </div>
             </div>
           </div>
