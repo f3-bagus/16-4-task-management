@@ -1,6 +1,7 @@
 /*eslint-disable*/
 import React from "react";
 import { Link } from "react-router-dom";
+import GLMendatar from "../../assets/img/GL-mendatar.png";
 
 import NotificationDropdown from "../Dropdowns/NotificationDropdown.js";
 import UserDropdown from "../Dropdowns/UserDropdown.js";
@@ -20,11 +21,12 @@ export default function Sidebar() {
             <i className="fas fa-bars"></i>
           </button>
           {/* Brand */}
-          <Link
-            className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-            to="/"
-          >
-            Notus React
+          <Link to="/">
+            <img
+              src={GLMendatar}
+              alt="GL Mendatar"
+              className="text-blueGray-700 text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
+            />
           </Link>
           {/* User */}
           <ul className="md:hidden items-center flex flex-wrap list-none">
@@ -46,11 +48,12 @@ export default function Sidebar() {
             <div className="md:min-w-full md:hidden block pb-4 mb-4 border-b border-solid border-blueGray-200">
               <div className="flex flex-wrap">
                 <div className="w-6/12">
-                  <Link
-                    className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-                    to="/"
-                  >
-                    Notus React
+                  <Link to="/">
+                    <img
+                      src={GLMendatar}
+                      alt="GL Mendatar"
+                      className="text-blueGray-700 text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
+                    />
                   </Link>
                 </div>
                 <div className="w-6/12 flex justify-end">
@@ -64,26 +67,16 @@ export default function Sidebar() {
                 </div>
               </div>
             </div>
-            {/* Form */}
-            <form className="mt-6 mb-4 md:hidden">
-              <div className="mb-3 pt-0">
-                <input
-                  type="text"
-                  placeholder="Search"
-                  className="border-0 px-3 py-2 h-12 border border-solid  border-blueGray-500 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-base leading-snug shadow-none outline-none focus:outline-none w-full font-normal"
-                />
-              </div>
-            </form>
+<ul className="md:flex-col md:min-w-full flex flex-col list-none">
+{/* Akun */}
 
-            {/* Divider */}
-            <hr className="my-4 md:min-w-full" />
-            {/* Heading */}
-            <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-              Admin Layout Pages
-            </h6>
-            {/* Navigation */}
+              <li className="flex-col md:flex-row list-none items-center hidden md:flex">
+<UserDropdown />
+              </li>
 
-            <ul className="md:flex-col md:min-w-full flex flex-col list-none">
+
+
+{/* add task */}
               <li className="items-center">
                 <Link
                   className={
@@ -96,88 +89,103 @@ export default function Sidebar() {
                 >
                   <i
                     className={
-                      "fas fa-tv mr-2 text-sm " +
+                      "fas fa-solid fa-plus mr-2 text-sm " +
                       (window.location.href.indexOf("/admin/dashboard") !== -1
                         ? "opacity-75"
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
-                  Dashboard
+                  Add Task
                 </Link>
               </li>
 
+<hr className="my-4 md:min-w-full" />
+
+            {/* Form */}
+            <form className="mt-6 mb-4 md:hidden">
+              <div className="mb-3 pt-0">
+                <input
+                  type="text"
+                  placeholder="Search"
+                  className="border-0 px-3 py-2 h-12 border border-solid  border-blueGray-500 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-base leading-snug shadow-none outline-none focus:outline-none w-full font-normal"
+                />
+              </div>
+            </form>
+
+{/* Search */}
+              <li className="items-center">
+                <Link>
+                  <form className="md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3">
+                    <div className="relative flex w-full flex-wrap items-stretch">
+                      <span className="z-10 h-full leading-snug font-normal absolute text-center text-blueGray-300 absolute bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3">
+                        <i className="fas fa-search"></i>
+                      </span>
+                      <input
+                        type="text"
+                        placeholder="Search here..."
+                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm shadow outline-none focus:outline-none focus:ring w-full pl-10"
+                      />
+                    </div>
+                  </form>
+                </Link>
+              </li>
+
+<hr className="my-4 md:min-w-full" />
+
+{/* Today */}
               <li className="items-center">
                 <Link
                   className={
                     "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/settings") !== -1
+                    (window.location.href.indexOf("/admin/today") !== -1
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
                       : "text-blueGray-700 hover:text-blueGray-500")
                   }
-                  to="/admin/settings"
+                  to="/admin/today"
                 >
                   <i
                     className={
-                      "fas fa-tools mr-2 text-sm " +
-                      (window.location.href.indexOf("/admin/settings") !== -1
+                      "fas fa-clipboard-list mr-2 text-sm " +
+                      (window.location.href.indexOf("/admin/today") !== -1
                         ? "opacity-75"
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
-                  Settings
+                  Today
                 </Link>
               </li>
 
+{/* Upcoming */}
               <li className="items-center">
                 <Link
                   className={
                     "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/tables") !== -1
+                    (window.location.href.indexOf("/admin/upcoming") !== -1
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
                       : "text-blueGray-700 hover:text-blueGray-500")
                   }
-                  to="/admin/tables"
+                  to="/admin/upcoming"
                 >
                   <i
                     className={
                       "fas fa-table mr-2 text-sm " +
-                      (window.location.href.indexOf("/admin/tables") !== -1
+                      (window.location.href.indexOf("/admin/upcoming") !== -1
                         ? "opacity-75"
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
-                  Tables
+                  Upcoming
                 </Link>
               </li>
 
-              <li className="items-center">
-                <Link
-                  className={
-                    "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/maps") !== -1
-                      ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500")
-                  }
-                  to="/admin/maps"
-                >
-                  <i
-                    className={
-                      "fas fa-map-marked mr-2 text-sm " +
-                      (window.location.href.indexOf("/admin/maps") !== -1
-                        ? "opacity-75"
-                        : "text-blueGray-300")
-                    }
-                  ></i>{" "}
-                  Maps
-                </Link>
-              </li>
+
             </ul>
 
             {/* Divider */}
             <hr className="my-4 md:min-w-full" />
             {/* Heading */}
             <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-              Auth Layout Pages
+              My Project
             </h6>
             {/* Navigation */}
 
@@ -192,142 +200,6 @@ export default function Sidebar() {
                 </Link>
               </li>
 
-              <li className="items-center">
-                <Link
-                  className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
-                  to="/auth/register"
-                >
-                  <i className="fas fa-clipboard-list text-blueGray-300 mr-2 text-sm"></i>{" "}
-                  Register
-                </Link>
-              </li>
-            </ul>
-
-            {/* Divider */}
-            <hr className="my-4 md:min-w-full" />
-            {/* Heading */}
-            <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-              No Layout Pages
-            </h6>
-            {/* Navigation */}
-
-            <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
-              <li className="items-center">
-                <Link
-                  className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
-                  to="/landing"
-                >
-                  <i className="fas fa-newspaper text-blueGray-400 mr-2 text-sm"></i>{" "}
-                  Landing Page
-                </Link>
-              </li>
-
-              <li className="items-center">
-                <Link
-                  className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
-                  to="/profile"
-                >
-                  <i className="fas fa-user-circle text-blueGray-400 mr-2 text-sm"></i>{" "}
-                  Profile Page
-                </Link>
-              </li>
-            </ul>
-
-            {/* Divider */}
-            <hr className="my-4 md:min-w-full" />
-            {/* Heading */}
-            <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-              Documentation
-            </h6>
-            {/* Navigation */}
-            <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
-              <li className="inline-flex">
-                <a
-                  href="https://www.creative-tim.com/learning-lab/tailwind/react/colors/notus"
-                  target="_blank"
-                  className="text-blueGray-700 hover:text-blueGray-500 text-sm block mb-4 no-underline font-semibold"
-                >
-                  <i className="fas fa-paint-brush mr-2 text-blueGray-300 text-base"></i>
-                  Styles
-                </a>
-              </li>
-
-              <li className="inline-flex">
-                <a
-                  href="https://www.creative-tim.com/learning-lab/tailwind/react/alerts/notus"
-                  target="_blank"
-                  className="text-blueGray-700 hover:text-blueGray-500 text-sm block mb-4 no-underline font-semibold"
-                >
-                  <i className="fab fa-css3-alt mr-2 text-blueGray-300 text-base"></i>
-                  CSS Components
-                </a>
-              </li>
-
-              <li className="inline-flex">
-                <a
-                  href="https://www.creative-tim.com/learning-lab/tailwind/angular/overview/notus"
-                  target="_blank"
-                  className="text-blueGray-700 hover:text-blueGray-500 text-sm block mb-4 no-underline font-semibold"
-                >
-                  <i className="fab fa-angular mr-2 text-blueGray-300 text-base"></i>
-                  Angular
-                </a>
-              </li>
-
-              <li className="inline-flex">
-                <a
-                  href="https://www.creative-tim.com/learning-lab/tailwind/js/overview/notus"
-                  target="_blank"
-                  className="text-blueGray-700 hover:text-blueGray-500 text-sm block mb-4 no-underline font-semibold"
-                >
-                  <i className="fab fa-js-square mr-2 text-blueGray-300 text-base"></i>
-                  Javascript
-                </a>
-              </li>
-
-              <li className="inline-flex">
-                <a
-                  href="https://www.creative-tim.com/learning-lab/tailwind/nextjs/overview/notus"
-                  target="_blank"
-                  className="text-blueGray-700 hover:text-blueGray-500 text-sm block mb-4 no-underline font-semibold"
-                >
-                  <i className="fab fa-react mr-2 text-blueGray-300 text-base"></i>
-                  NextJS
-                </a>
-              </li>
-
-              <li className="inline-flex">
-                <a
-                  href="https://www.creative-tim.com/learning-lab/tailwind/react/overview/notus"
-                  target="_blank"
-                  className="text-blueGray-700 hover:text-blueGray-500 text-sm block mb-4 no-underline font-semibold"
-                >
-                  <i className="fab fa-react mr-2 text-blueGray-300 text-base"></i>
-                  React
-                </a>
-              </li>
-
-              <li className="inline-flex">
-                <a
-                  href="https://www.creative-tim.com/learning-lab/tailwind/svelte/overview/notus"
-                  target="_blank"
-                  className="text-blueGray-700 hover:text-blueGray-500 text-sm block mb-4 no-underline font-semibold"
-                >
-                  <i className="fas fa-link mr-2 text-blueGray-300 text-base"></i>
-                  Svelte
-                </a>
-              </li>
-
-              <li className="inline-flex">
-                <a
-                  href="https://www.creative-tim.com/learning-lab/tailwind/vue/overview/notus"
-                  target="_blank"
-                  className="text-blueGray-700 hover:text-blueGray-500 text-sm block mb-4 no-underline font-semibold"
-                >
-                  <i className="fab fa-vuejs mr-2 text-blueGray-300 text-base"></i>
-                  VueJS
-                </a>
-              </li>
             </ul>
           </div>
         </div>
