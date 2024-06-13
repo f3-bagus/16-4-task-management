@@ -48,12 +48,6 @@ export default function Index() {
             </div>
           </div>
         </div>
-
-        <img
-          className="absolute top-0 b-auto right-0 pt-16 sm:w-6/12 -mt-48 sm:mt-0 w-10/12 max-h-860px"
-          src={require("../assets/img/pattern_react.png").default}
-          alt="..."
-        />
       </section>
 
       <section className="mt-48 md:mt-40 pb-40 relative bg-blueGray-100">
@@ -234,7 +228,9 @@ export default function Index() {
                 />
                 <img
                   alt="..."
-                  src={require("../assets/img/component-profile-card.png").default}
+                  src={
+                    require("../assets/img/component-profile-card.png").default
+                  }
                   className="w-full align-middle rounded-lg absolute shadow-lg -top-160-px left-260-px max-w-210-px"
                 />
                 <img
