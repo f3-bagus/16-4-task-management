@@ -10,9 +10,7 @@ Welcome to the Task Management App API documentation. This API allows you to man
 4. [Task Project Management](./docs/task-project-management.md)
 5. [Task Section Management](./docs/task-section-management.md)
 6. [Task Sub Tasks](./docs/task-subtasks.md)
-7. [Task Assigment](./docs/task-assigment.md)
-8. [Task Comments](./docs/task-comments.md)
-9. [Task Notification](./docs/task-notification.md)
+7. [Task Comments](./docs/task-comments.md)
 
 ## Getting Started
 
