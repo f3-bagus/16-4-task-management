@@ -23,8 +23,8 @@ router.post(
   createTaskSectionController
 );
 
-router.get('/:project_id', authMiddleware, getTaskSectionsController);
-router.get('/:id', authMiddleware, getTaskSectionByIdController);
+router.get('/section/:id', authMiddleware, getTaskSectionByIdController);
+router.get('/project/:project_id', authMiddleware, getTaskSectionsController);
 router.put(
   '/:id',
   authMiddleware,
