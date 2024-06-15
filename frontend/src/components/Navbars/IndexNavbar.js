@@ -29,7 +29,7 @@ export default function Navbar(props) {
               <li className="flex items-center">
                 <Link
                   to="/auth/login"
-                  className="active:bg-blue-600 text-l font-base px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150 "
+                  className="border-1 text-l font-base px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150 "
                 >
                   Log in
                 </Link>

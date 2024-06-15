@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import { MoreHorizontal } from "react-feather";
 
-import Card from "../Card/Card";
+import Card from "../MainCard/Card";
 import Dropdown from "../Dropdown/Dropdown";
-import Editable from "../Editabled/Editable";
+import Editable from "../Editable/Editable";
 
 import "./Board.css";
 
 function Board(props) {
   const [showDropdown, setShowDropdown] = useState(false);
+
+  console.log("props in Board:", props); // Tambahkan log ini untuk debugging
 
   return (
     <div className="board">

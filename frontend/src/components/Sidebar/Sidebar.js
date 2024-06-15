@@ -29,14 +29,7 @@ export default function Sidebar() {
             />
           </Link>
           {/* User */}
-          <ul className="md:hidden items-center flex flex-wrap list-none">
-            <li className="inline-block relative">
-              <NotificationDropdown />
-            </li>
-            <li className="inline-block relative">
-              <UserDropdown />
-            </li>
-          </ul>
+
           {/* Collapse */}
           <div
             className={
@@ -67,16 +60,14 @@ export default function Sidebar() {
                 </div>
               </div>
             </div>
-<ul className="md:flex-col md:min-w-full flex flex-col list-none">
-{/* Akun */}
+            <ul className="md:flex-col md:min-w-full flex flex-col list-none">
+              {/* Akun */}
 
               <li className="flex-col md:flex-row list-none items-center hidden md:flex">
-<UserDropdown />
+                <UserDropdown /> <p className="ml-2">Fauqa</p>
               </li>
 
-
-
-{/* add task */}
+              {/* add task */}
               <li className="items-center">
                 <Link
                   className={
@@ -99,40 +90,38 @@ export default function Sidebar() {
                 </Link>
               </li>
 
-<hr className="my-4 md:min-w-full" />
+              <hr className="my-4 md:min-w-full" />
 
-            {/* Form */}
-            <form className="mt-6 mb-4 md:hidden">
-              <div className="mb-3 pt-0">
-                <input
-                  type="text"
-                  placeholder="Search"
-                  className="border-0 px-3 py-2 h-12 border border-solid  border-blueGray-500 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-base leading-snug shadow-none outline-none focus:outline-none w-full font-normal"
-                />
-              </div>
-            </form>
+              {/* Form */}
+              {/* <form className="mt-6 mb-4 md:hidden">
+                <div className="mb-3 pt-0">
+                  <input
+                    type="text"
+                    placeholder="Search"
+                    className="border-0 px-3 py-2 h-12 border border-solid  border-blueGray-500 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-base leading-snug shadow-none outline-none focus:outline-none w-full font-normal"
+                  />
+                </div>
+              </form> */}
 
-{/* Search */}
+              {/* Search */}
               <li className="items-center">
-                <Link>
-                  <form className="md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3">
-                    <div className="relative flex w-full flex-wrap items-stretch">
-                      <span className="z-10 h-full leading-snug font-normal absolute text-center text-blueGray-300 absolute bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3">
-                        <i className="fas fa-search"></i>
-                      </span>
-                      <input
-                        type="text"
-                        placeholder="Search here..."
-                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm shadow outline-none focus:outline-none focus:ring w-full pl-10"
-                      />
-                    </div>
-                  </form>
-                </Link>
+                <form className="md:flex hidden flex-row flex-wrap items-center lg:mr-1 ml-3">
+                  <div className="relative flex w-full flex-wrap items-stretch">
+                    <span className="z-10 h-full leading-snug font-normal absolute text-center text-blueGray-300 absolute bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3">
+                      <i className="fas fa-search"></i>
+                    </span>
+                    <input
+                      type="text"
+                      placeholder="Search here..."
+                      className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm shadow outline-none focus:outline-none focus:ring w-full pl-10"
+                    />
+                  </div>
+                </form>
               </li>
 
-<hr className="my-4 md:min-w-full" />
+              <hr className="my-4 md:min-w-full" />
 
-{/* Today */}
+              {/* Today */}
               <li className="items-center">
                 <Link
                   className={
@@ -155,7 +144,7 @@ export default function Sidebar() {
                 </Link>
               </li>
 
-{/* Upcoming */}
+              {/* Upcoming */}
               <li className="items-center">
                 <Link
                   className={
@@ -177,8 +166,6 @@ export default function Sidebar() {
                   Upcoming
                 </Link>
               </li>
-
-
             </ul>
 
             {/* Divider */}
@@ -199,7 +186,6 @@ export default function Sidebar() {
                   Login
                 </Link>
               </li>
-
             </ul>
           </div>
         </div>

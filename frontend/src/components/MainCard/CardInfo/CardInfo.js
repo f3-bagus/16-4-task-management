@@ -10,7 +10,7 @@ import {
 } from "react-feather";
 
 import Modal from "../../Modal/Modal";
-import Editable from "../../Editabled/Editable";
+import Editable from "../../Editable/Editable";
 
 import "./CardInfo.css";
 

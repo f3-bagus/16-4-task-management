@@ -1,23 +1,24 @@
-import React from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Route, Routes, Navigate } from "react-router-dom";
 
 // components
-import AdminNavbar from "../components/Navbars/AdminNavbar.js";
-import Sidebar from "../components/Sidebar/Sidebar.js";
-import HeaderStats from "../components/Headers/HeaderStats.js";
-import FooterAdmin from "../components/Footers/FooterAdmin.js";
+// import AdminNavbar from "../components/Navbars/AdminNavbar";
+import Sidebar from "../components/Sidebar/Sidebar";
+import HeaderStats from "../components/Headers/HeaderStats";
+import FooterAdmin from "../components/Footers/FooterAdmin";
 
 // views
-import Dashboard from "../views/admin/Dashboard.js";
-import Maps from "../views/admin/Maps.js";
-import Today from "../views/admin/Today.js";
-import Upcoming from "../views/admin/Upcoming.js";
+import Dashboard from "../views/admin/Dashboard";
+import Maps from "../views/admin/Maps";
+import Today from "../views/admin/Today";
+import Upcoming from "../views/admin/Upcoming";
 
 export default function Admin() {
   return (
     <>
       <Sidebar />
       <HeaderStats />
+
       <div className="relative md:ml-64 bg-blueGray-100">
         <div className="px-4 md:px-10 mx-auto w-full -m-24">
           <Routes>
