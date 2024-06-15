@@ -12,6 +12,7 @@ import Dashboard from "../views/admin/Dashboard";
 import Maps from "../views/admin/Maps";
 import Today from "../views/admin/Today";
 import Upcoming from "../views/admin/Upcoming";
+import AkunSetting from "../views/admin/AkunSetting.js";
 
 export default function Admin() {
   return (
@@ -26,6 +27,7 @@ export default function Admin() {
             <Route path="/maps" element={<Maps />} />
             <Route path="/today" element={<Today />} />
             <Route path="/upcoming" element={<Upcoming />} />
+            <Route path="/setting" element={<AkunSetting />} />
             <Route path="*" element={<Navigate to="/dashboard" />} />
           </Routes>
           <FooterAdmin />
