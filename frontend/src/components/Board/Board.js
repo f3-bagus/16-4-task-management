@@ -47,8 +47,8 @@ function Board(props) {
           />
         ))}
         <Editable
-          text="+ Add Card"
-          placeholder="Enter Card Title"
+          text="+ Add Task"
+          placeholder="Enter Task Title"
           displayClass="board_add-card"
           editClass="board_add-card_edit"
           onSubmit={(value) => props.addCard(props.board?.id, value)}

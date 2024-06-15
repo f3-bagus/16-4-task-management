@@ -76,7 +76,7 @@ function Card(props) {
                 onClose={() => setShowDropdown(false)}
               >
                 <p onClick={() => props.removeCard(props.boardId, id)}>
-                  Delete Card
+                  Delete Task
                 </p>
               </Dropdown>
             )}
