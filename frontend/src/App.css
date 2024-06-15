@@ -119,3 +119,113 @@
   border-radius: 10px;
   padding: 10px;
 }
+
+/* Custom CSS for Dropdown */
+.dropdown-container {
+  position: relative;
+}
+
+.dropdown-button {
+  color: #4a5568;
+  /* text-blueGray-700 */
+  font-size: 0.75rem;
+  /* text-xs */
+  text-transform: uppercase;
+  padding: 0.75rem 1rem;
+  /* py-3 */
+  font-weight: bold;
+  /* font-bold */
+  display: block;
+  focus: outline-none;
+  cursor: pointer;
+}
+
+.dropdown-icon {
+  margin-right: 0.5rem;
+  /* mr-2 */
+  font-size: 0.875rem;
+  /* text-sm */
+}
+
+.dropdown-menu {
+  position: absolute;
+  right: 0;
+  margin-top: 0.5rem;
+  /* mt-2 */
+  padding: 0.5rem 0;
+  /* py-2 */
+  width: 12rem;
+  /* w-48 */
+  background-color: #fff;
+  /* bg-white */
+  border-radius: 0.375rem;
+  /* rounded-md */
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  /* shadow-xl */
+  z-index: 20;
+  /* z-20 */
+}
+
+.dropdown-menu-item {
+  padding: 0.5rem 1rem;
+  /* px-4 py-2 */
+  color: #4a5568;
+  /* text-blueGray-700 */
+  display: block;
+  text-decoration: none;
+}
+
+.dropdown-menu-item:hover {
+  color: #718096;
+  /* hover:text-blueGray-500 */
+}
+
+.dropdown-menu-item-icon {
+  margin-right: 0.5rem;
+  /* mr-2 */
+  font-size: 0.875rem;
+  /* text-sm */
+}
+
+/* Custom CSS for Navigation */
+.navigation {
+  /* Add any custom styling for the navigation component here */
+}
+
+.navigation-title {
+  min-width: 100%;
+  /* md:min-w-full */
+  color: #718096;
+  /* text-blueGray-500 */
+  font-size: 0.75rem;
+  /* text-xs */
+  text-transform: uppercase;
+  /* uppercase */
+  font-weight: bold;
+  /* font-bold */
+  padding-top: 0.25rem;
+  /* pt-1 */
+  padding-bottom: 1rem;
+  /* pb-4 */
+  display: block;
+  text-decoration: none;
+  /* no-underline */
+}
+
+.navigation-list {
+  min-width: 100%;
+  /* md:min-w-full */
+  display: flex;
+  flex-direction: column;
+  /* flex-col */
+  list-style: none;
+  /* list-none */
+  margin-bottom: 1rem;
+  /* md:mb-4 */
+}
+
+.navigation-item {
+  display: flex;
+  align-items: center;
+  /* items-center */
+}
