@@ -5,7 +5,7 @@ import GLMendatar from "../../assets/img/GL-mendatar.png";
 
 import NotificationDropdown from "../Dropdowns/NotificationDropdown.js";
 import UserDropdown from "../Dropdowns/UserDropdown.js";
-
+import DropdownMP from "../Dropdowns/DropdownMP.js";
 export default function Sidebar() {
   const [collapseShow, setCollapseShow] = React.useState("hidden");
   return (
@@ -171,22 +171,7 @@ export default function Sidebar() {
             {/* Divider */}
             <hr className="my-4 md:min-w-full" />
             {/* Heading */}
-            <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-              My Project
-            </h6>
-            {/* Navigation */}
-
-            <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
-              <li className="items-center">
-                <Link
-                  className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
-                  to="/auth/login"
-                >
-                  <i className="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>{" "}
-                  Login
-                </Link>
-              </li>
-            </ul>
+            <DropdownMP />
           </div>
           <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
             <li className="items-center">
