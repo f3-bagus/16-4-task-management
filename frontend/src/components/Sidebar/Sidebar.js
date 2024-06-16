@@ -190,7 +190,7 @@ export default function Sidebar() {
                 >
                   <i
                     className={
-                      "fas fa-table mr-2 text-sm " +
+                      "fa-solid fa-clock-rotate-left mr-2 text-sm " +
                       (window.location.href.indexOf("/admin/history") !== -1
                         ? "opacity-75"
                         : "text-blueGray-300")
