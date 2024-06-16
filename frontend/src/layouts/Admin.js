@@ -14,6 +14,7 @@ import Today from "../views/admin/Today";
 import Upcoming from "../views/admin/Upcoming";
 import AkunSetting from "../views/admin/AkunSetting.js";
 import Myproject from "../views/admin/Myproject.js";
+import History from "../views/admin/History.js";
 
 
 export default function Admin() {
@@ -35,6 +36,7 @@ export default function Admin() {
             <Route path="/maps" element={<Maps />} />
             <Route path="/today" element={<Today />} />
             <Route path="/upcoming" element={<Upcoming />} />
+            <Route path="/history" element={<History />} />
             <Route path="/setting" element={<AkunSetting />} />
             <Route path="/myproject" element={<Myproject />} />
 
