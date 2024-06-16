@@ -1,42 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../../App.css";
-export default function VerifyAcc() {
-  const [otp, setOtp] = useState("");
-  const [countdown, setCountdown] = useState(300); // 5 menit dalam detik
-  const [otpExpired, setOtpExpired] = useState(false);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      if (countdown > 0) {
-        setCountdown((prevCountdown) => prevCountdown - 1);
-      } else {
-        setOtpExpired(true);
-        clearInterval(timer);
-      }
-    }, 1000);
+export default function ChangeEmail() {
+  const [newEmail, setNewEmail] = useState("");
+  const [confirmEmail, setConfirmEmail] = useState("");
 
-    return () => clearInterval(timer);
-  }, [countdown]);
+  const handleNewEmailChange = (e) => {
+    setNewEmail(e.target.value);
+  };
 
-  const handleOtpChange = (e) => {
-    setOtp(e.target.value);
+  const handleConfirmEmailChange = (e) => {
+    setConfirmEmail(e.target.value);
   };
 
   const handleVerify = () => {
-    if (otpExpired) {
-      console.log("Kode OTP telah kadaluwarsa");
-      // Tambahkan logika untuk menangani kadaluwarsa OTP
+    if (newEmail === confirmEmail) {
+      console.log("New Email:", newEmail);
+      // Add logic to handle email change
     } else {
-      // Logika untuk verifikasi OTP
-      console.log("OTP:", otp);
+      console.log("Emails do not match");
     }
-  };
-
-  const handleResendOtp = () => {
-    setCountdown(300); // Reset countdown
-    setOtpExpired(false);
-    // Logika untuk mengirim ulang OTP
-    console.log("Mengirim ulang OTP...");
   };
 
   return (
@@ -47,29 +30,45 @@ export default function VerifyAcc() {
             <div className="rounded-t mb-0 px-6 py-6">
               <div className="text-center mb-3">
                 <h6 className="text-blueGray-500 text-sm font-bold">
-                  Input OTP Code
+                  Change Email
                 </h6>
               </div>
               <hr className="mt-6 border-b-1 border-blueGray-300" />
             </div>
             <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
               <div className="text-blueGray-400 text-center mb-3 font-bold">
-                <small>Check Your Email</small>
+                <small>Insert New Email</small>
               </div>
               <form>
                 <div className="relative w-full mb-3">
                   <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                    htmlFor="grid-otp"
+                    htmlFor="grid-new-email"
                   >
-                    OTP Code
+                    New Email
                   </label>
                   <input
-                    type="text"
+                    type="email"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    placeholder="Input OTP Code"
-                    value={otp}
-                    onChange={handleOtpChange}
+                    placeholder="New Email"
+                    value={newEmail}
+                    onChange={handleNewEmailChange}
+                  />
+                </div>
+
+                <div className="relative w-full mb-3">
+                  <label
+                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    htmlFor="grid-confirm-email"
+                  >
+                    Confirm New Email
+                  </label>
+                  <input
+                    type="email"
+                    className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    placeholder="Confirm New Email"
+                    value={confirmEmail}
+                    onChange={handleConfirmEmailChange}
                   />
                 </div>
 
@@ -79,27 +78,10 @@ export default function VerifyAcc() {
                     type="button"
                     onClick={handleVerify}
                   >
-                    Verification
+                    Send Verification Code
                   </button>
                 </div>
               </form>
-
-              {countdown > 0 && (
-                <div className="text-center mt-6">
-                  <small>
-                    Time: {Math.floor(countdown / 60)}:
-                    {countdown % 60 < 10
-                      ? `0${countdown % 60}`
-                      : countdown % 60}
-                  </small>
-                </div>
-              )}
-
-              {otpExpired && (
-                <div className="text-center mt-6 OTP">
-                  <small onClick={handleResendOtp}>Send OTP</small>
-                </div>
-              )}
             </div>
           </div>
         </div>

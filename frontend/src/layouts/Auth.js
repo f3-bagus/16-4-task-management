@@ -16,6 +16,9 @@ import OTPCode from "../views/auth/KodeOtp.js";
 
 import Changepassword from "../views/auth/Changepassword.js";
 
+import ChangeEmail from "../views/auth/Changeemail.js";
+
+
 export default function Auth() {
   return (
     <>
@@ -34,7 +37,9 @@ export default function Auth() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/verify-account" element={<VerifyAcc />} />
-            <Route path="/changepassword" element={<Changepassword />} />
+
+            <Route path="/changepassword" element={<Changepassword/>} /> 
+            <Route path="/changeemail" element={<ChangeEmail/>} />
             <Route path="/succesverif" element={<SuccesVerif />} />
             <Route path="/otp-email" element={<OTPEmail />} />
             <Route path="/otp-code" element={<OTPCode />} />

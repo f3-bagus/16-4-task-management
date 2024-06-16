@@ -79,10 +79,16 @@ export default function Login() {
               </form>
             </div>
           </div>
-          <div className="flex flex-wrap mt-6 relative">
-            <div className="w-full text-center">
-              <Link to="/auth/register" className="text-blueGray-200">
+          <div className="flex flex-wrap mt-6 relative justify-between">
+            <div className="w-full flex justify-between">
+              <Link
+                to="/auth/register"
+                className="text-blueGray-200 text-start"
+              >
                 <small>Create new account</small>
+              </Link>
+              <Link to="/auth/otp-email" className="text-blueGray-200 text-end">
+                <small>Forgot password?</small>
               </Link>
             </div>
           </div>
