@@ -10,8 +10,12 @@ import Login from "../views/auth/Login.js";
 import Register from "../views/auth/Register.js";
 import VerifyAcc from "../views/auth/VerifyAcc.js";
 import SuccesVerif from "../views/auth/SuccesVerif.js";
+
 import OTPEmail from "../views/auth/EmailOtp.js";
 import OTPCode from "../views/auth/KodeOtp.js";
+
+import Changepassword from "../views/auth/Changepassword.js";
+
 export default function Auth() {
   return (
     <>
@@ -30,6 +34,7 @@ export default function Auth() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/verify-account" element={<VerifyAcc />} />
+            <Route path="/changepassword" element={<Changepassword />} />
             <Route path="/succesverif" element={<SuccesVerif />} />
             <Route path="/otp-email" element={<OTPEmail />} />
             <Route path="/otp-code" element={<OTPCode />} />
@@ -40,3 +45,4 @@ export default function Auth() {
     </>
   );
 }
+// Route changepassword sementara
