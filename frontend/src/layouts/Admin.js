@@ -15,6 +15,7 @@ import Upcoming from "../views/admin/Upcoming";
 import AkunSetting from "../views/admin/AkunSetting.js";
 import Myproject from "../views/admin/Myproject.js";
 
+
 export default function Admin() {
   const addCard = (boardId, taskTitle) => {
     console.log("Adding task to board:", boardId, "with title:", taskTitle);
@@ -29,6 +30,7 @@ export default function Admin() {
       <div className="relative md:ml-64 bg-blueGray-100">
         <div className="px-4 md:px-10 mx-auto w-full -m-24">
           <Routes>
+            
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/maps" element={<Maps />} />
             <Route path="/today" element={<Today />} />

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../../App.css";
-export default function VerifyAcc() {
+export default function OtpChangeEmail() {
   const [otp, setOtp] = useState("");
   const [countdown, setCountdown] = useState(300); // 5 menit dalam detik
   const [otpExpired, setOtpExpired] = useState(false);
@@ -24,7 +24,7 @@ export default function VerifyAcc() {
 
   const handleVerify = () => {
     if (otpExpired) {
-      console.log("Kode OTP telah kadaluwarsa");
+      console.log("OTP has expired");
       // Tambahkan logika untuk menangani kadaluwarsa OTP
     } else {
       // Logika untuk verifikasi OTP
@@ -54,7 +54,7 @@ export default function VerifyAcc() {
             </div>
             <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
               <div className="text-blueGray-400 text-center mb-3 font-bold">
-                <small>Check Your Email</small>
+                <small>We have sent OTP on your Email. Please Check Your Email</small>
               </div>
               <form>
                 <div className="relative w-full mb-3">

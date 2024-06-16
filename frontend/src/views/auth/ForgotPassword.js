@@ -1,6 +1,6 @@
 import React from "react";
 import "../../App.css";
-export default function Otp() {
+export default function ForgotPassword() {
   return (
     <div className="container mx-auto px-4 h-full">
       <div className="flex content-center items-center justify-center h-full">

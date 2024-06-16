@@ -102,7 +102,7 @@ export default function Sidebar() {
 
               <hr className="my-2 md:min-w-full" />
 
-              {/* Form */}
+              {/* Form
               {/* <form className="mt-6 mb-4 md:hidden">
                 <div className="mb-3 pt-0">
                   <input
@@ -114,7 +114,7 @@ export default function Sidebar() {
               </form> */}
 
               {/* Search */}
-              <li className="items-center">
+              {/* <li className="items-center">
                 <form className="md:flex hidden flex-row flex-wrap items-center lg:mr-1 ml-3">
                   <div className="relative flex w-full flex-wrap items-stretch">
                     <span className="z-10 h-full leading-snug font-normal absolute text-center text-blueGray-300 absolute bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3">
@@ -129,7 +129,7 @@ export default function Sidebar() {
                 </form>
               </li>
 
-              <hr className="my-4 md:min-w-full" />
+              <hr className="my-4 md:min-w-full" /> */} 
 
               {/* Today */}
               <li className="items-center">

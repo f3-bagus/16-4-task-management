@@ -11,8 +11,9 @@ import Register from "../views/auth/Register.js";
 import VerifyAcc from "../views/auth/VerifyAcc.js";
 import SuccesVerif from "../views/auth/SuccesVerif.js";
 
-import OTPEmail from "../views/auth/EmailOtp.js";
-import OTPCode from "../views/auth/KodeOtp.js";
+import ForgotPassword from "../views/auth/ForgotPassword.js";
+import OtpChangePassword from "../views/auth/OtpChangePassword.js";
+import OtpChangeEmail from "../views/auth/OtpChangeEmail.js";
 
 import Changepassword from "../views/auth/Changepassword.js";
 
@@ -41,8 +42,9 @@ export default function Auth() {
             <Route path="/changepassword" element={<Changepassword/>} /> 
             <Route path="/changeemail" element={<ChangeEmail/>} />
             <Route path="/succesverif" element={<SuccesVerif />} />
-            <Route path="/otp-email" element={<OTPEmail />} />
-            <Route path="/otp-code" element={<OTPCode />} />
+            <Route path="/forgotpassword" element={<ForgotPassword />} />
+            <Route path="/OtpChangePassword" element={<OtpChangePassword />} />
+            <Route path="/OtpChangeEmail" element={<OtpChangeEmail />} />
             <Route path="*" element={<Navigate to="/login" />} />
           </Routes>
         </section>
