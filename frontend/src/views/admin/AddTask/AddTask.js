@@ -163,6 +163,78 @@ function AddTask(props) {
           />
         </div>
 
+        <div className="cardinfo_box">
+          <div className="cardinfo_box_title">
+            <Tag />
+            <p>Labels</p>
+          </div>
+          <div className="cardinfo_box_labels">
+            {values.labels?.map((item, index) => (
+              <label
+                key={index}
+                style={{ backgroundColor: item.color, color: "#fff" }}
+              >
+                {item.text}
+                <X onClick={() => removeLabel(item)} />
+              </label>
+            ))}
+          </div>
+          <ul>
+            {colors.map((item, index) => (
+              <li
+                key={index + item}
+                style={{ backgroundColor: item }}
+                className={selectedColor === item ? "li_active" : ""}
+                onClick={() => setSelectedColor(item)}
+              />
+            ))}
+          </ul>
+          <Editable
+            text="Add Label"
+            placeholder="Enter label text"
+            onSubmit={(value) =>
+              addLabel({ color: selectedColor, text: value })
+            }
+          />
+        </div>
+
+<div className="cardinfo_box">
+          <div className="cardinfo_box_title">
+            <CheckSquare />
+            <p>Tasks</p>
+          </div>
+          <div className="cardinfo_box_progress-bar">
+            <div
+              className="cardinfo_box_progress"
+              style={{
+                width: `${calculatePercent()}%`,
+                backgroundColor: calculatePercent() === 100 ? "limegreen" : "",
+              }}
+            />
+          </div>
+          <div className="cardinfo_box_task_list">
+            {values.tasks?.map((item) => (
+              <div key={item.id} className="cardinfo_box_task_checkbox">
+                <input
+                  type="checkbox"
+                  defaultChecked={item.completed}
+                  onChange={(event) =>
+                    updateTask(item.id, event.target.checked)
+                  }
+                />
+                <p className={item.completed ? "completed" : ""}>{item.text}</p>
+                <Trash onClick={() => removeTask(item.id)} />
+              </div>
+            ))}
+          </div>
+          <Editable
+            text={"Add a Sub Task"}
+            placeholder="Enter sub task"
+            onSubmit={addTask}
+          />
+        </div>
+
+
       </div>
     </Modal>
   );
