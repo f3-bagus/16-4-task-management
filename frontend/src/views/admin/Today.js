@@ -3,9 +3,6 @@ import Board from "../../components/Board/Board";
 import Editable from "../../components/Editable/Editable";
 import "../../components/Board/Board.css";
 
-import CardSettings from "../../components/Cards/CardSettings.js";
-import CardProfile from "../../components/Cards/CardProfile.js";
-
 export default function Today() {
   const [boards, setBoards] = useState(
     JSON.parse(localStorage.getItem("prac-kanban")) || []

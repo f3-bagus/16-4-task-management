@@ -11,7 +11,7 @@ export default function DropdownMP() {
 
   return (
     <div className="relative">
-      <div className="flex items-center ">
+      <div className="flex items-center">
         <Link
           to="/admin/myproject"
           className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block focus:outline-none flex items-center"
@@ -23,15 +23,17 @@ export default function DropdownMP() {
             to="/admin/myproject"
             className="text-blueGray-400 hover:text-blueGray-500 focus:outline-none px-2"
           >
-            <i className="fas fa-solid fa-plus"></i> {/* Icon Plus */}
-            {/* Icon Chevron Down */}
+            <i className="fas fa-solid fa-plus"></i>
           </Link>
           <button
             onClick={toggleDropdown}
-            className="text-blueGray-400 hover:text-blueGray-500 focus:outline-none "
+            className="text-blueGray-400 hover:text-blueGray-500 focus:outline-none transition-transform duration-800 ease-out-in"
           >
-            <i className="fas fa-solid fa-chevron-down"></i>{" "}
-            {/* Icon Chevron Down */}
+            <i
+              className={`fas fa-solid ${
+                dropdownOpen ? "fa-chevron-down" : "fa-chevron-right"
+              }`}
+            ></i>
           </button>
         </div>
       </div>
