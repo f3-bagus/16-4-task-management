@@ -9,7 +9,7 @@ export default function Myproject() {
     setDropdownOpen(!dropdownOpen);
   };
   return (
-    <div className="flexjustify-center min-h-screen bg-gray-100">
+    <div className="flex justify-center min-h-screen bg-gray-100">
       <div className="p-8 bg-white rounded-lg shadow-lg w-full max-w-2xl">
         <h1 className="text-3xl font-bold text-start">My Projects</h1>
         <p className="pt-2 text-blueGray-400 text-start">Free plan</p>

@@ -10,6 +10,7 @@ import Login from "../views/auth/Login.js";
 import Register from "../views/auth/Register.js";
 import VerifyAcc from "../views/auth/VerifyAcc.js";
 import SuccesVerif from "../views/auth/SuccesVerif.js";
+import OTP from "../views/auth/Otp.js";
 export default function Auth() {
   return (
     <>
@@ -29,6 +30,7 @@ export default function Auth() {
             <Route path="/register" element={<Register />} />
             <Route path="/verify-account" element={<VerifyAcc />} />
             <Route path="/succesverif" element={<SuccesVerif />} />
+            <Route path="/otp" element={<OTP />} />
             <Route path="*" element={<Navigate to="/login" />} />
           </Routes>
         </section>
