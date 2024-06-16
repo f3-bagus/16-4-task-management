@@ -1,9 +1,9 @@
 // AddEditable
 import React, { useState } from "react";
 import { X } from "react-feather";
-import "./Editable.css";
+import "./AddEditable.css";
 
-function Editable(props) {
+function AddEditable(props) {
   const [isEditable, setIsEditable] = useState(false);
   const [inputText, setInputText] = useState(props.defaultValue || "");
 
@@ -17,10 +17,10 @@ function Editable(props) {
   };
 
   return (
-    <div className="editable">
+    <div className="addeditable">
       {isEditable ? (
         <form
-          className={`editable_edit ${props.editClass ? props.editClass : ""}`}
+          className={`addeditable_edit ${props.editClass ? props.editClass : ""}`}
           onSubmit={submission}
         >
           <input
@@ -30,14 +30,14 @@ function Editable(props) {
             onChange={(event) => setInputText(event.target.value)}
             autoFocus
           />
-          <div className="editable_edit_footer">
+          <div className="addeditable_edit_footer">
             <button type="submit">{props.buttonText || "Add"}</button>
             <X onClick={() => setIsEditable(false)} className="closeIcon" />
           </div>
         </form>
       ) : (
         <p
-          className={`editable_display ${
+          className={`addeditable_display ${
             props.displayClass ? props.displayClass : ""
           }`}
           onClick={() => setIsEditable(true)}
@@ -49,4 +49,4 @@ function Editable(props) {
   );
 }
 
-export default Editable;
+export default AddEditable;

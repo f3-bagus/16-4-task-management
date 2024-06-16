@@ -1,28 +1,29 @@
-.editable {
+.addeditable {
     width: 100%;
 }
 
-.editable_display {
+.addeditable_display {
     padding: 8px 12px;
     border-radius: 4px;
-    background-color: #eee;
-    color: #000;
+    background-color: #0099ff;
+    color: #ffffff;
     cursor: pointer;
     display: inline-block;
     transition: background-color 0.2s ease;
 }
 
-.editable_display:hover {
+.addeditable_display:hover {
     background-color: #ffffff;
+    color: #000000;
 }
 
-.editable_edit {
+.addeditable_edit {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.editable_edit input {
+.addeditable_edit input {
     border: 2px solid #0079bf;
     border-radius: 5px;
     outline: none;
@@ -30,13 +31,13 @@
     padding: 10px;
 }
 
-.editable_edit_footer {
+.addeditable_edit_footer {
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
-.editable_edit_footer button {
+.addeditable_edit_footer button {
     cursor: pointer;
     border-radius: 5px;
     outline: none;
@@ -47,15 +48,15 @@
     padding: 10px 20px;
 }
 
-.editable_edit_footer button:hover {
+.addeditable_edit_footer button:hover {
     background-color: #046daa;
 }
 
-.editable_edit_footer button:active {
+.addeditable_edit_footer button:active {
     transform: translateY(2px);
 }
 
-.editable_edit_footer .closeIcon {
+.addeditable_edit_footer .closeIcon {
     cursor: pointer;
     height: 24px;
     width: 24px;
