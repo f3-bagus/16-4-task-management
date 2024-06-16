@@ -1,13 +1,25 @@
 /*eslint-disable*/
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import GLMendatar from "../../assets/img/GL-mendatar.png";
-
+import AddTask from "../../views/admin/AddTask/AddTask.js"; // Sesuaikan dengan path AddTask.js
 import NotificationDropdown from "../Dropdowns/NotificationDropdown.js";
 import UserDropdown from "../Dropdowns/UserDropdown.js";
 import DropdownMP from "../Dropdowns/DropdownMP.js";
 export default function Sidebar() {
   const [collapseShow, setCollapseShow] = React.useState("hidden");
+
+  // AddTask config start
+  const [showAddTaskModal, setShowAddTaskModal] = useState(false);
+
+  const openAddTaskModal = () => {
+    setShowAddTaskModal(true);
+  };
+
+  const closeAddTaskModal = () => {
+    setShowAddTaskModal(false);
+  };
+  // AddTask config end
   return (
     <>
       <nav className="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6">
@@ -63,34 +75,32 @@ export default function Sidebar() {
             <ul className="md:flex-col md:min-w-full flex flex-col list-none">
               {/* Akun */}
 
-              <li className="flex-col md:flex-row list-none items-center hidden md:flex">
+              <li className="py-3 flex-col md:flex-row list-none items-center hidden md:flex">
                 <UserDropdown /> <p className="ml-2">Fauqa</p>
               </li>
 
               {/* add task */}
-              <li className="items-center">
-                <Link
-                  className={
-                    "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/addtask") !== -1
-                      ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500")
-                  }
-                  to="/admin/addtask"
+              {/* List item untuk tombol "Add Task" */}
+              <li className=" flex-col md:flex-row list-none items-center hidden md:flex">
+                <button
+                  className="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500 outline-none focus:outline-none"
+                  onClick={openAddTaskModal}
                 >
                   <i
                     className={
-                      "fas fa-solid fa-plus mr-2 text-sm " +
-                      (window.location.href.indexOf("/admin/addtask") !== -1
-                        ? "opacity-75"
-                        : "text-blueGray-300")
+                      "fa-solid fa-plus mr-2 text-sm outline-none focus:outline-none" 
                     }
-                  ></i>{" "}
+                  ></i>
                   Add Task
-                </Link>
+                </button>
               </li>
 
-              <hr className="my-4 md:min-w-full" />
+              {/* Modal AddTask */}
+              {showAddTaskModal && (
+                <AddTask onClose={closeAddTaskModal} />
+              )}
+
+              <hr className="my-2 md:min-w-full" />
 
               {/* Form */}
               {/* <form className="mt-6 mb-4 md:hidden">
