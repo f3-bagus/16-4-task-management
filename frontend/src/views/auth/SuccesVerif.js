@@ -1,6 +1,7 @@
 import React from "react";
 import "../../App.css";
-export default function VerifyAcc() {
+
+export default function SuccesVerif() {
   return (
     <div className="container mx-auto px-4 h-full">
       <div className="flex content-center items-center justify-center h-full">
@@ -14,9 +15,17 @@ export default function VerifyAcc() {
               </div>
               <hr className="mt-6 border-b-1 border-blueGray-300" />
             </div>
+            <div className="flex items-center justify-center">
+              <img
+                className=""
+                src="https://img.icons8.com/?size=100&id=A8xKzsTKHhzn&format=png&color=000000"
+                alt="Success Icon"
+                style={{ width: "70px", height: "70px" }}
+              />
+            </div>
             <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
               <div className="text-blueGray-400 text-center mb-3 font-bold">
-                <small>Please verify your email address</small>
+                <small>Account created successfully</small>
               </div>
             </div>
           </div>

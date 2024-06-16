@@ -30,29 +30,8 @@ export default function Myproject() {
           </div>
         </div>
         <hr className="my-4 md:min-w-full" />
-        <div className="relative">
-          <button className="flex items-center">
-            <div className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block focus:outline-none flex items-center">
-              <i className="fas fa-hashtag text-blueGray-400 mr-2"></i>My work
-            </div>
-            <div className="absolute right-0">
-              <button
-                onClick={toggleDropdown}
-                className="text-blueGray-400 hover:text-blueGray-500 focus:outline-none transition-transform duration-800 ease-out-in"
-              >
-                <i className={`fas fa-ellipsis-h ${dropdownOpen}`}></i>
-              </button>
-            </div>
-          </button>
-          {dropdownOpen && (
-            <div className="mt-3 w-48 bg-white rounded-md shadow-xl z-20">
-              <button className="block px-4 py-2 text-blueGray-700 hover:text-blueGray-500">
-                Delete
-              </button>
-            </div>
-          )}
-        </div>
-        {/* <div className="mt-6">
+
+        <div className="mt-6">
           <p className="text-gray-700">2 projects</p>
           <div className="mt-2 p-4 bg-gray-50 flex items-center justify-between">
             <div>
@@ -72,7 +51,7 @@ export default function Myproject() {
               <i className="fa fa-ellipsis-h"></i>
             </div>
           </div>
-        </div> */}
+        </div>
       </div>
     </div>
   );

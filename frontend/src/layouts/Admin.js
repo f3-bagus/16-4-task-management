@@ -15,7 +15,6 @@ import Upcoming from "../views/admin/Upcoming";
 import AkunSetting from "../views/admin/AkunSetting.js";
 import Myproject from "../views/admin/Myproject.js";
 
-
 export default function Admin() {
   const addCard = (boardId, taskTitle) => {
     console.log("Adding task to board:", boardId, "with title:", taskTitle);
@@ -36,6 +35,7 @@ export default function Admin() {
             <Route path="/upcoming" element={<Upcoming />} />
             <Route path="/setting" element={<AkunSetting />} />
             <Route path="/myproject" element={<Myproject />} />
+
             <Route path="*" element={<Navigate to="/dashboard" />} />
           </Routes>
           <FooterAdmin />
