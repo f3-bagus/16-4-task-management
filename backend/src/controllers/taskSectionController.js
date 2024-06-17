@@ -43,7 +43,6 @@ export const getTaskSectionByIdController = async (req, res) => {
     }
 
     const taskSection = await getTaskSectionById(intId);
-    console.log(taskSection);
 
     if (!taskSection) {
       return res.status(404).json({ error: 'Task section not found' });
@@ -59,7 +58,7 @@ export const getTaskSectionByIdController = async (req, res) => {
 export const getTaskSectionsController = async (req, res) => {
   try {
     const { project_id } = req.params;
-    const userId = req.user.id;
+    const userId = req.user.id; // Assumes user ID is stored in req.user
 
     if (isNaN(project_id)) {
       return res.status(400).json({ error: 'Invalid project ID' });
@@ -75,7 +74,6 @@ export const getTaskSectionsController = async (req, res) => {
     const taskSections = await getTaskSectionsByProjectId(project_id);
     res.status(200).json(taskSections);
   } catch (error) {
-    console.log(error);
     res.status(500).json({ error: error.message });
   }
 };
@@ -119,7 +117,6 @@ export const deleteTaskSectionController = async (req, res) => {
     await deleteTaskSection(id);
     res.json({ message: 'Task section deleted successfully' });
   } catch (error) {
-    console.log(error);
     res.status(500).json({ error: error.message });
   }
 };

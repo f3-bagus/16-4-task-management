@@ -1,45 +1,29 @@
 import express from 'express';
-import authMiddleware from '../middlewares/authMiddleware.js';
+import authController from '../controllers/authController.js';
 import { validateBody } from '../middlewares/validationMiddleware.js';
 import {
-  getUserProfile,
-  updateUserProfile,
-  updateUserPassword,
-  verifyOtp,
-  updatePasswordWithOtp,
-} from '../controllers/userController.js';
-import {
-  updateProfileSchema,
-  updatePasswordSchema,
-  verifyOtpSchema,
-} from '../validations/userValidation.js';
+  registerSchema,
+  loginSchema,
+  requestPasswordResetSchema,
+  otpSchema,
+} from '../validations/authValidation.js';
+import authMiddleware from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
 
-router.get('/profile', authMiddleware, getUserProfile);
-router.put(
-  '/profile',
-  authMiddleware,
-  validateBody(updateProfileSchema),
-  updateUserProfile
+router.post('/register', validateBody(registerSchema), authController.register);
+router.post('/login', validateBody(loginSchema), authController.login);
+router.get('/verify-email', authController.verifyEmail);
+router.post('/logout', authMiddleware, authController.logout);
+router.post(
+  '/request-password-reset',
+  validateBody(requestPasswordResetSchema),
+  authController.requestPasswordReset
 );
 router.post(
-  '/profile/verify-otp',
-  authMiddleware,
-  validateBody(verifyOtpSchema),
-  verifyOtp
-);
-router.put(
-  '/profile/password',
-  authMiddleware,
-  validateBody(updatePasswordSchema),
-  updateUserPassword
-);
-router.post(
-  '/profile/password/verify-otp',
-  authMiddleware,
-  validateBody(verifyOtpSchema),
-  updatePasswordWithOtp
+  '/verify-otp',
+  validateBody(otpSchema),
+  authController.verifyOtpAndSendRandomPassword
 );
 
 export default router;
