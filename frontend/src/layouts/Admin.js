@@ -15,7 +15,7 @@ import Upcoming from "../views/admin/Upcoming";
 import AkunSetting from "../views/admin/AkunSetting.js";
 import Myproject from "../views/admin/Myproject.js";
 import History from "../views/admin/History.js";
-
+import DetailProject from "../components/DetailProject/DetailProject.js";
 
 export default function Admin() {
   const addCard = (boardId, taskTitle) => {
@@ -31,7 +31,6 @@ export default function Admin() {
       <div className="relative md:ml-64 bg-blueGray-100">
         <div className="px-4 md:px-10 mx-auto w-full -m-24">
           <Routes>
-            
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/maps" element={<Maps />} />
             <Route path="/today" element={<Today />} />
@@ -39,6 +38,7 @@ export default function Admin() {
             <Route path="/history" element={<History />} />
             <Route path="/setting" element={<AkunSetting />} />
             <Route path="/myproject" element={<Myproject />} />
+            <Route path="/detailproject" element={<DetailProject />} />
 
             <Route path="*" element={<Navigate to="/dashboard" />} />
           </Routes>

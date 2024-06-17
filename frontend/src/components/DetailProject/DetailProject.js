@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import Board from "../../components/Board/Board";
-import Editable from "../../components/Editable/Editable";
-import "../../components/Board/Board.css";
+import Board from "../Board/Board";
+import Editable from "../Editable/Editable";
+import "../Board/Board.css";
 
-export default function History() {
+export default function DetailProject() {
   const [boards, setBoards] = useState(
     JSON.parse(localStorage.getItem("prac-kanban")) || []
   );
@@ -120,7 +120,7 @@ export default function History() {
   return (
     <div className="app">
       <div className="app_nav">
-        <h1>History</h1>
+        <h1>My work</h1>
       </div>
       <div className="app_boards_container">
         <div className="app_boards">
