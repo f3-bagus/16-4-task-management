@@ -6,26 +6,16 @@ import {
   Tag,
   Trash,
   Type,
-  X,
 } from "react-feather";
 
 import Modal from "../../../components/Modal/Modal";
 import Editable from "../../../components/Editable/Editable";
+import PriorityDropdown from "./PriorityDropdown";
 
 import "./AddTask.css";
 
 function AddTask(props) {
-  const colors = [
-    "#a8193d",
-    "#4fcc25",
-    "#1ebffa",
-    "#8da377",
-    "#9975bd",
-    "#cf61a1",
-    "#240959",
-  ];
-
-  const [selectedColor, setSelectedColor] = useState();
+  const [selectedPriority, setSelectedPriority] = useState("");
   const [values, setValues] = useState({
     title: props.card?.title || '',
     desc: props.card?.desc || '',
@@ -49,26 +39,6 @@ function AddTask(props) {
 
   const updateDesc = (value) => {
     setValues({ ...values, desc: value });
-  };
-
-  const addLabel = (label) => {
-    const index = values.labels.findIndex((item) => item.text === label.text);
-    if (index > -1) return;
-
-    setSelectedColor("");
-    setValues({
-      ...values,
-      labels: [...values.labels, label],
-    });
-  };
-
-  const removeLabel = (label) => {
-    const tempLabels = values.labels.filter((item) => item.text !== label.text);
-
-    setValues({
-      ...values,
-      labels: tempLabels,
-    });
   };
 
   const addTask = (value) => {
@@ -132,16 +102,18 @@ function AddTask(props) {
   return (
     <Modal onClose={closeModal} isOpen={isModalOpen}>
       <div className="cardinfo">
+        
+
         <div className="cardinfo_box">
           <div className="cardinfo_box_title">
             <Type />
             <p>Title</p>
           </div>
           <Editable
-            defaultValue={values.desc}
-            text={values.desc || "Add a Title"}
+            defaultValue={values.title}
+            text={values.title || "Add a Title"}
             placeholder="Enter Title"
-            onSubmit={updateDesc}
+            onSubmit={updateTitle}
           />
         </div>
 
@@ -186,8 +158,19 @@ function AddTask(props) {
         </select>
       </div>
 
+      <div className="cardinfo_box">
+          <div className="cardinfo_box_title">
+            <Tag />
+            <p>Priority</p>
+          </div>
+          <PriorityDropdown 
+            selectedPriority={selectedPriority}
+            setSelectedPriority={setSelectedPriority}
+          />
+        </div>
 
-<div className="cardinfo_box">
+
+        <div className="cardinfo_box">
           <div className="cardinfo_box_title">
             <CheckSquare />
             <p>Sub Tasks</p>
@@ -222,9 +205,8 @@ function AddTask(props) {
             onSubmit={addTask}
           />
         </div>
-
-
       </div>
+      
     </Modal>
   );
 }
