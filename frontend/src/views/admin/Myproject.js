@@ -68,33 +68,34 @@ export default function Myproject() {
           </div>
         </div>
         <hr className="my-4 md:min-w-full" />
-
+        <p className="text-gray-700">1 projects</p>
         <div className="mt-6">
-          <p className="text-gray-700">1 projects</p>
-          <Link
-            to="/admin/detailProject"
-            className="relative mt-2 p-4 bg-gray-50 flex items-center justify-between w-full text-left dropdown-container hover:bg-gray-400"
-          >
-            <div className="flex items-center text-blueGray-500">
-              <i className="fa fa-hashtag mr-2"></i>
-              My work
-            </div>
-            <div className="text-gray-400 hover:text-gray-600">
-              <button onClick={toggleDropdown} className="focus:outline-none">
-                <i className="fa fa-ellipsis-h"></i>
-              </button>
-            </div>
-            {dropdownOpen && (
-              <div className="absolute right-0 top-full mt-8 w-48 bg-white border rounded shadow-lg z-10">
-                <button
-                  onClick={handleDelete}
-                  className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-400 focus:outline-none"
-                >
-                  Delete
+          <div className="hover:bg-gray-200">
+            <Link
+              to="/admin/detailProject"
+              className="relative mt-2 p-4 flex items-center justify-between w-full text-left border-b "
+            >
+              <div className="flex items-center text-blueGray-500">
+                <i className="fa fa-hashtag mr-2"></i>
+                My work
+              </div>
+              <div className="text-gray-400 hover:text-gray-600">
+                <button onClick={toggleDropdown} className="focus:outline-none">
+                  <i className="fa fa-ellipsis-h"></i>
                 </button>
               </div>
-            )}
-          </Link>
+              {dropdownOpen && (
+                <div className="absolute right-0 top-full mt-8 w-48 bg-white border rounded shadow-lg z-10">
+                  <button
+                    onClick={handleDelete}
+                    className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-400 focus:outline-none"
+                  >
+                    Delete
+                  </button>
+                </div>
+              )}
+            </Link>
+          </div>
         </div>
       </div>
     </div>

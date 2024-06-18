@@ -87,7 +87,10 @@ export default function Login() {
               >
                 <small>Create new account</small>
               </Link>
-              <Link to="/auth/otp-email" className="text-blueGray-200 text-end">
+              <Link
+                to="/auth/ForgotPassword"
+                className="text-blueGray-200 text-end"
+              >
                 <small>Forgot password?</small>
               </Link>
             </div>
