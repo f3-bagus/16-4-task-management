@@ -1,7 +1,38 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/auth/login",
+        {
+          email,
+          password,
+        }
+      );
+      if (response.data.token) {
+        // Simpan token di localStorage atau state management
+        localStorage.setItem("token", response.data.token);
+        // Redirect ke halaman dashboard atau halaman yang diinginkan
+        navigate("/admin/dashboard");
+      }
+    } catch (err) {
+      if (err.response && err.response.data && err.response.data.error) {
+        setError(err.response.data.error);
+      } else {
+        setError("Invalid email or password");
+      }
+    }
+  };
+
   return (
     <div className="container mx-auto px-4 h-full">
       <div className="flex content-center items-center justify-center h-full">
@@ -11,34 +42,10 @@ export default function Login() {
               <div className="text-center mb-3">
                 <h6 className="text-blueGray-500 text-sm font-bold">Sign in</h6>
               </div>
-              <div className="btn-wrapper text-center">
-                {/* <button
-                  className="bg-white active:bg-blueGray-50 text-blueGray-700 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-2 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150"
-                  type="button"
-                >
-                  <img
-                    alt="Github Logo"
-                    className="w-5 mr-1"
-                    src={require("../../assets/img/github.svg").default}
-                  />
-                  Github
-                </button>
-                <button
-                  className="bg-white active:bg-blueGray-50 text-blueGray-700 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150"
-                  type="button"
-                >
-                  <img
-                    alt="Google Logo"
-                    className="w-5 mr-1"
-                    src={require("../../assets/img/google.svg").default}
-                  />
-                  Google
-                </button> */}
-              </div>
               <hr className="mt-6 border-b-1 border-blueGray-300" />
             </div>
             <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
-              <form>
+              <form onSubmit={handleLogin}>
                 <div className="relative w-full mb-3">
                   <label
                     htmlFor="email"
@@ -51,6 +58,8 @@ export default function Login() {
                     type="email"
                     placeholder="Email"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
                 <div className="relative w-full mb-3">
@@ -65,8 +74,16 @@ export default function Login() {
                     type="password"
                     placeholder="Password"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
+
+                {error && (
+                  <div className="text-red-500 text-xs italic mb-4">
+                    {error}
+                  </div>
+                )}
 
                 <div className="text-center mt-6">
                   <button

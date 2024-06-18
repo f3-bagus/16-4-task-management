@@ -5,6 +5,10 @@ import GLMendatar from "../../assets/img/GL-mendatar.png";
 
 export default function Navbar(props) {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
+
+  // Periksa apakah token ada di localStorage
+  const isLoggedIn = !!localStorage.getItem("token");
+
   return (
     <>
       <nav className="top-0 fixed z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-white shadow">
@@ -26,29 +30,35 @@ export default function Navbar(props) {
             id="example-navbar-warning"
           >
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
+              {!isLoggedIn && (
+                <>
+                  <li className="flex items-center">
+                    <Link
+                      to="/auth/login"
+                      className="border-1 text-l font-base px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150 "
+                    >
+                      Log in
+                    </Link>
+                  </li>
+                  <li className="flex items-center">
+                    <Link
+                      to="/auth/register"
+                      className="bg-lightBlue-500 text-white active:bg-lightBlue-600 text-l font-base px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
+                    >
+                      Try Now <i className="fas fa-solid fa-arrow-right"></i>
+                    </Link>
+                  </li>
+                </>
+              )}
               <li className="flex items-center">
-                <Link
-                  to="/auth/login"
-                  className="border-1 text-l font-base px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150 "
-                >
-                  Log in
-                </Link>
-              </li>
-              <li className="flex items-center">
-                <Link
-                  to="/auth/register"
-                  className="bg-lightBlue-500 text-white active:bg-lightBlue-600 text-l font-base px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
-                >
-                  Try Now <i className="fas fa-solid fa-arrow-right"></i>
-                </Link>
-              </li>
-              <li className="flex items-center">
-                <Link
-                  to="/admin/dashboard"
-                  className="active:bg-blue-600 text-l font-base w-10 h-10 flex items-center justify-center rounded-full shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
-                >
-                  <i className="fas fa-solid fa-house-user"></i>
-                </Link>
+                {isLoggedIn && (
+                  <Link
+                    to="/admin/dashboard"
+                    className="active:bg-blue-600 text-l font-base w-10 h-10 flex items-center justify-center rounded-full shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
+                  >
+                    <i className="fas fa-solid fa-house-user"></i>
+                  </Link>
+                )}
               </li>
             </ul>
           </div>

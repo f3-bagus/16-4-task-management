@@ -1,11 +1,13 @@
 /*eslint-disable*/
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import GLMendatar from "../../assets/img/GL-mendatar.png";
 import AddTask from "../../views/admin/AddTask/AddTask.js"; // Sesuaikan dengan path AddTask.js
 import NotificationDropdown from "../Dropdowns/NotificationDropdown.js";
 import UserDropdown from "../Dropdowns/UserDropdown.js";
 import DropdownMP from "../Dropdowns/DropdownMP.js";
+import axios from "axios";
+
 export default function Sidebar() {
   const [collapseShow, setCollapseShow] = React.useState("hidden");
 
@@ -19,9 +21,32 @@ export default function Sidebar() {
   const closeAddTaskModal = () => {
     setShowAddTaskModal(false);
   };
-  // AddTask config end
 
-  
+  const [username, setUsername] = useState("");
+
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          throw new Error("Token not found");
+        }
+        const response = await axios.get(
+          "http://localhost:3000/api/users/profile",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setUsername(response.data.user.username);
+      } catch (error) {
+        console.error("Failed to fetch user profile:", error);
+      }
+    };
+    fetchUserProfile();
+  }, []);
+
   return (
     <>
       <nav className="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6">
@@ -78,7 +103,7 @@ export default function Sidebar() {
               {/* Akun */}
 
               <li className="py-3 flex-col md:flex-row list-none items-center hidden md:flex">
-                <UserDropdown /> <p className="ml-2">Fauqa</p>
+                <UserDropdown /> <p className="ml-2">{username}</p>
               </li>
 
               {/* add task */}
@@ -90,7 +115,7 @@ export default function Sidebar() {
                 >
                   <i
                     className={
-                      "fa-solid fa-plus mr-2 text-sm outline-none focus:outline-none" 
+                      "fa-solid fa-plus mr-2 text-sm outline-none focus:outline-none"
                     }
                   ></i>
                   Add Task
@@ -98,40 +123,9 @@ export default function Sidebar() {
               </li>
 
               {/* Modal AddTask */}
-              {showAddTaskModal && (
-                <AddTask onClose={closeAddTaskModal} />
-              )}
+              {showAddTaskModal && <AddTask onClose={closeAddTaskModal} />}
 
               <hr className="my-2 md:min-w-full" />
-
-              {/* Form
-              {/* <form className="mt-6 mb-4 md:hidden">
-                <div className="mb-3 pt-0">
-                  <input
-                    type="text"
-                    placeholder="Search"
-                    className="border-0 px-3 py-2 h-12 border border-solid  border-blueGray-500 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-base leading-snug shadow-none outline-none focus:outline-none w-full font-normal"
-                  />
-                </div>
-              </form> */}
-
-              {/* Search */}
-              {/* <li className="items-center">
-                <form className="md:flex hidden flex-row flex-wrap items-center lg:mr-1 ml-3">
-                  <div className="relative flex w-full flex-wrap items-stretch">
-                    <span className="z-10 h-full leading-snug font-normal absolute text-center text-blueGray-300 absolute bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3">
-                      <i className="fas fa-search"></i>
-                    </span>
-                    <input
-                      type="text"
-                      placeholder="Search here..."
-                      className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm shadow outline-none focus:outline-none focus:ring w-full pl-10"
-                    />
-                  </div>
-                </form>
-              </li>
-
-              <hr className="my-4 md:min-w-full" /> */} 
 
               {/* Today */}
               <li className="items-center">
@@ -179,7 +173,7 @@ export default function Sidebar() {
                 </Link>
               </li>
 
-             {/* History Task */}
+              {/* History Task */}
               <li className="items-center">
                 <Link
                   className={
@@ -198,7 +192,7 @@ export default function Sidebar() {
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
-                   History Task
+                  History Task
                 </Link>
               </li>
             </ul>

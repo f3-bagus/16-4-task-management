@@ -1,10 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import Blank from "../../assets/img/blank.png";
-
+import axios from "axios";
 export default function CardSettings() {
+  const [email, setEmail] = React.useState("");
+
+  React.useEffect(() => {
+    const fetchUserProfile = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          throw new Error("Token not found");
+        }
+        const response = await axios.get(
+          "http://localhost:3000/api/users/profile",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setUsername(response.data.user.username);
+        setEmail(response.data.user.email); // tambahkan baris ini
+      } catch (error) {
+        console.error("Failed to fetch user profile:", error);
+      }
+    };
+    fetchUserProfile();
+  }, []);
+
   const [
     isEditingUsername,
     setIsEditingUsername,
@@ -77,9 +103,7 @@ export default function CardSettings() {
                   <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="grid-username"
-                  >
-                    Username
-                  </label>
+                  ></label>
                   <div className="flex">
                     <input
                       type="text"
@@ -103,12 +127,11 @@ export default function CardSettings() {
                   <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="grid-email"
-                  >
-                    Email address
-                  </label>
+                  ></label>
                   <input
                     type="email"
                     id="grid-email"
+                    value={email}
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     defaultValue="jesse@example.com"
                     disabled={!isEditingEmail}
