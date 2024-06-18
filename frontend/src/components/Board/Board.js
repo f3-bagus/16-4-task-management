@@ -56,7 +56,7 @@ function Board(props) {
             updateCard={props.updateCard}
           />
         ))}
-        
+
         {/* Tombol untuk membuka modal AddTask */}
         <button
           className="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500 outline-none focus:outline-none"

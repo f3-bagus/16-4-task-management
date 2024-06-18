@@ -8,14 +8,13 @@ import {
   Type,
 } from "react-feather";
 
-import Modal from "../../../components/Modal/Modal";
-import Editable from "../../../components/Editable/Editable";
-import PriorityDropdown from "./PriorityDropdown";
-import SubTask from "./SubTask/SubTask";
+import Modal from "../../../../components/Modal/Modal";
+import Editable from "../../../../components/Editable/Editable";
+import PriorityDropdown from "../PriorityDropdown";
 
-import "./AddTask.css";
+import "./SubTask.css";
 
-function AddTask(props) {
+function SubTask(props) {
   const [selectedPriority, setSelectedPriority] = useState("");
   const [values, setValues] = useState({
     title: props.card?.title || '',
@@ -100,16 +99,6 @@ function AddTask(props) {
   }, [values]);
 
 
-// SubTask
-  const [showSubTaskModal, setShowSubTaskModal] = useState(false);
-  const openSubTaskModal = () => {
-    setShowSubTaskModal(true);
-  };
-
-  const closeSubTaskModal = () => {
-    setShowSubTaskModal(false);
-  };
-
   return (
     <Modal onClose={closeModal} isOpen={isModalOpen}>
       <div className="cardinfo">
@@ -118,7 +107,7 @@ function AddTask(props) {
         <div className="cardinfo_box">
           <div className="cardinfo_box_title">
             <Type />
-            <p>Title</p>
+            <p>Sub Task Title</p>
           </div>
           <Editable
             defaultValue={values.title}
@@ -141,33 +130,6 @@ function AddTask(props) {
           />
         </div>
 
-     <div className="cardinfo_box">
-        <div className="cardinfo_box_title">
-          <Calendar />
-          <p>Date</p>
-        </div>
-        <input
-          type="date"
-          defaultValue={values.date}
-          min={new Date().toISOString().substr(0, 10)}
-          onChange={(event) => updateDate(event.target.value)}
-        />
-      </div>
-
-      <div className=" cardinfo_box ">
-        <p >Frequency</p>
-        <select
-          id="frequency"
-          value={values.frequency}
-          onChange={(event) => updateFrequency(event.target.value)}
-        >
-          <option value="none">None</option>
-          <option value="daily">Daily</option>
-          <option value="weekly">Weekly</option>
-          <option value="monthly">Monthly</option>
-          <option value="yearly">Yearly</option>
-        </select>
-      </div>
 
       <div className="cardinfo_box">
           <div className="cardinfo_box_title">
@@ -180,53 +142,10 @@ function AddTask(props) {
           />
         </div>
 
-
-        <div className="cardinfo_box">
-          <div className="cardinfo_box_title">
-            <CheckSquare />
-            <p>Sub Tasks</p>
-          </div>
-          <div className="cardinfo_box_progress-bar">
-            <div
-              className="cardinfo_box_progress"
-              style={{
-                width: `${calculatePercent()}%`,
-                backgroundColor: calculatePercent() === 100 ? "limegreen" : "",
-              }}
-            />
-          </div>
-          <div className="cardinfo_box_task_list">
-            {values.tasks?.map((item) => (
-              <div key={item.id} className="cardinfo_box_task_checkbox">
-                <input
-                  type="checkbox"
-                  defaultChecked={item.completed}
-                  onChange={(event) =>
-                    updateTask(item.id, event.target.checked)
-                  }
-                />
-                <p className={item.completed ? "completed" : ""}>{item.text}</p>
-                <Trash onClick={() => removeTask(item.id)} />
-              </div>
-            ))}
-          </div>
-                  {/* Tombol untuk membuka modal SubTask */}
-        <button
-          className="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500 outline-none focus:outline-none"
-          onClick={openSubTaskModal}
-        >
-          <i className="fa-solid fa-plus mr-2 text-sm outline-none focus:outline-none"></i>
-          Sub Task
-        </button>
       </div>
-      {/* Modal AddTask */}
-      {showSubTaskModal && (
-        <SubTask onClose={closeSubTaskModal} />
-      )}
-    </div>
       
     </Modal>
   );
 }
 
-export default AddTask;
+export default SubTask;
