@@ -27,7 +27,12 @@ function AddTask(props) {
 
   const [selectedColor, setSelectedColor] = useState();
   const [values, setValues] = useState({
-    ...props.card,
+    title: props.card?.title || '',
+    desc: props.card?.desc || '',
+    date: props.card?.date || '',
+    frequency: props.card?.frequency || 'daily',
+    labels: props.card?.labels || [],
+    tasks: props.card?.tasks || [],
   });
   const [isModalOpen, setIsModalOpen] = useState(true); // State untuk mengontrol visibilitas modal
 
@@ -80,7 +85,6 @@ function AddTask(props) {
 
   const removeTask = (id) => {
     const tasks = [...values.tasks];
-
     const tempTasks = tasks.filter((item) => item.id !== id);
     setValues({
       ...values,
@@ -90,12 +94,9 @@ function AddTask(props) {
 
   const updateTask = (id, value) => {
     const tasks = [...values.tasks];
-
     const index = tasks.findIndex((item) => item.id === id);
     if (index < 0) return;
-
     tasks[index].completed = value;
-
     setValues({
       ...values,
       tasks,
@@ -110,16 +111,23 @@ function AddTask(props) {
 
   const updateDate = (date) => {
     if (!date) return;
-
     setValues({
       ...values,
       date,
     });
   };
 
+  const updateFrequency = (frequency) => {
+    setValues({
+      ...values,
+      frequency,
+    });
+  };
+
   useEffect(() => {
     if (props.updateCard) props.updateCard(props.boardId, values.id, values);
   }, [values]);
+
 
   return (
     <Modal onClose={closeModal} isOpen={isModalOpen}>
@@ -150,58 +158,39 @@ function AddTask(props) {
           />
         </div>
 
-        <div className="cardinfo_box">
-          <div className="cardinfo_box_title">
-            <Calendar />
-            <p>Date</p>
-          </div>
-          <input
-            type="date"
-            defaultValue={values.date}
-            min={new Date().toISOString().substr(0, 10)}
-            onChange={(event) => updateDate(event.target.value)}
-          />
+     <div className="cardinfo_box">
+        <div className="cardinfo_box_title">
+          <Calendar />
+          <p>Date</p>
         </div>
+        <input
+          type="date"
+          defaultValue={values.date}
+          min={new Date().toISOString().substr(0, 10)}
+          onChange={(event) => updateDate(event.target.value)}
+        />
+      </div>
 
-        <div className="cardinfo_box">
-          <div className="cardinfo_box_title">
-            <Tag />
-            <p>Labels</p>
-          </div>
-          <div className="cardinfo_box_labels">
-            {values.labels?.map((item, index) => (
-              <label
-                key={index}
-                style={{ backgroundColor: item.color, color: "#fff" }}
-              >
-                {item.text}
-                <X onClick={() => removeLabel(item)} />
-              </label>
-            ))}
-          </div>
-          <ul>
-            {colors.map((item, index) => (
-              <li
-                key={index + item}
-                style={{ backgroundColor: item }}
-                className={selectedColor === item ? "li_active" : ""}
-                onClick={() => setSelectedColor(item)}
-              />
-            ))}
-          </ul>
-          <Editable
-            text="Add Label"
-            placeholder="Enter label text"
-            onSubmit={(value) =>
-              addLabel({ color: selectedColor, text: value })
-            }
-          />
-        </div>
+      <div className="cardinfo_box_frequency">
+        <label htmlFor="frequency">Frequency:</label>
+        <select
+          id="frequency"
+          value={values.frequency}
+          onChange={(event) => updateFrequency(event.target.value)}
+        >
+          <option value="none">None</option>
+          <option value="daily">Daily</option>
+          <option value="weekly">Weekly</option>
+          <option value="monthly">Monthly</option>
+          <option value="yearly">Yearly</option>
+        </select>
+      </div>
+
 
 <div className="cardinfo_box">
           <div className="cardinfo_box_title">
             <CheckSquare />
-            <p>Tasks</p>
+            <p>Sub Tasks</p>
           </div>
           <div className="cardinfo_box_progress-bar">
             <div
