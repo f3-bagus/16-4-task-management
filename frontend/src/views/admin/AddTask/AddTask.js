@@ -171,8 +171,8 @@ function AddTask(props) {
         />
       </div>
 
-      <div className="cardinfo_box_frequency">
-        <label htmlFor="frequency">Frequency:</label>
+      <div className=" cardinfo_box ">
+        <p >Frequency</p>
         <select
           id="frequency"
           value={values.frequency}
