@@ -1,9 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import Blank from "../../assets/img/blank.png";
-// components
 
 export default function CardSettings() {
+  const [isEditingUsername, setIsEditingUsername, isEditingEmail, setIsEditingEmail] = useState(false);
+  const [username, setUsername] = useState("lucky.jesse");
+  const [profilePic, setProfilePic] = useState(Blank);
+
+  const handleUsernameEdit = () => {
+    setIsEditingUsername(!isEditingUsername);
+  };
+
+  const handleUsernameChange = (event) => {
+    setUsername(event.target.value);
+  };
+
+  const handleProfilePicChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setProfilePic(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+    const handleEmailEdit = () => {
+    setIsEditingEmail(!isEditingEmail);
+  };
+
   return (
     <>
       <div className="min-h-screen relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
@@ -21,11 +49,22 @@ export default function CardSettings() {
               <div className="w-full lg:w-6/12 px-4 flex flex-col items-center">
                 <div className="relative mb-4">
                   <img
-                    src={Blank}
-                    alt="GoalTask Logo"
+                    src={profilePic}
+                    alt="Profile"
                     className="shadow-xl rounded-full h-auto align-middle border-none max-w-150-px"
                   />
+                  <label htmlFor="profilePicUpload" className="edit-pic absolute bottom-0 right-0 bg-gray-600 text-white rounded-full p-2 cursor-pointer">
+                    <FontAwesomeIcon color="black" icon={faEdit} />
+                  </label>
+                  <input
+                    type="file"
+                    id="profilePicUpload"
+                    accept="image/*"
+                    onChange={handleProfilePicChange}
+                    className="hidden"
+                  />
                 </div>
+
                 <div className="w-full mb-3">
                   <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
@@ -33,13 +72,25 @@ export default function CardSettings() {
                   >
                     Username
                   </label>
-                  <input
-                    type="text"
-                    id="grid-username"
-                    className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    defaultValue="lucky.jesse"
-                  />
+                  <div className="flex">
+                    <input
+                      type="text"
+                      id="grid-username"
+                      className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      value={username}
+                      onChange={handleUsernameChange}
+                      disabled={!isEditingUsername}
+                    />
+                    <button
+                      type="button"
+                      onClick={handleUsernameEdit}
+                      className="ml-2 px-3 py-1 text-sm bg-blueGray-600 text-white rounded"
+                    >
+                      {isEditingUsername ? "Save" : "Edit"}
+                    </button>
+                  </div>
                 </div>
+
                 <div className="w-full mb-3">
                   <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
@@ -52,6 +103,7 @@ export default function CardSettings() {
                     id="grid-email"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     defaultValue="jesse@example.com"
+                    disabled={!isEditingEmail}
                   />
                 </div>
               </div>
@@ -91,8 +143,6 @@ export default function CardSettings() {
                   </div>
                 </div>
               </div>
-
-              
 
 
             </div>
