@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Calendar, CheckSquare, List, Tag, Trash, Type } from "react-feather";
+import { Calendar, CheckSquare, List, Tag, Trash, Type, Book } from "react-feather";
 import Modal from "../../../components/Modal/Modal";
 import Editable from "../../../components/Editable/Editable";
 import PriorityDropdown from "./PriorityDropdown";
@@ -149,18 +149,7 @@ function AddTask(props) {
           />
         </div>
 
-        <div className="cardinfo_box">
-          <div className="cardinfo_box_title">
-            <Tag />
-            <p>Priority</p>
-          </div>
-          <PriorityDropdown 
-            selectedPriority={selectedPriority}
-            setSelectedPriority={setSelectedPriority}
-          />
-        </div>
-
-        <div className="cardinfo_box">
+        <div className="frequency_cardinfo_box">
           <p>Frequency</p>
           <select
             id="frequency"
@@ -178,6 +167,19 @@ function AddTask(props) {
         <div className="cardinfo_box">
           <div className="cardinfo_box_title">
             <Tag />
+            <p>Priority</p>
+          </div>
+          <PriorityDropdown 
+            selectedPriority={selectedPriority}
+            setSelectedPriority={setSelectedPriority}
+          />
+        </div>
+
+        
+
+        <div className="cardinfo_box">
+          <div className="cardinfo_box_title">
+            <Book />
             <p>Select Project</p>
           </div>
           <div className="project_dropdown">
