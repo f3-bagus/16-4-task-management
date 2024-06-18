@@ -9,7 +9,7 @@ export default function ForgotPassword() {
             <div className="rounded-t mb-0 px-6 py-6">
               <div className="text-center mb-3">
                 <h6 className="text-blueGray-500 text-sm font-bold">
-                  Verifikasi Akun
+                  Account Verification
                 </h6>
               </div>
               <hr className="mt-6 border-b-1 border-blueGray-300" />

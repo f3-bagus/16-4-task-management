@@ -68,7 +68,7 @@ export default function CardSettings() {
                   <div className="relative w-full mb-3">
                     {/* Menggunakan Link untuk mengarahkan ke rute "/change-password" */}
                     <Link
-                      to="/auth/OtpChangePassword"
+                      to="/auth/ChangePassword"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     >
                       Change Password
@@ -83,7 +83,7 @@ export default function CardSettings() {
                   <div className="relative w-full mb-3">
                     {/* Menggunakan Link untuk mengarahkan ke rute "/change-password" */}
                     <Link
-                      to="/auth/OtpChangeEmail"
+                      to="/auth/ChangeEmail"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     >
                       Change Email

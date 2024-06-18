@@ -79,7 +79,7 @@ export default function OtpChangePassword() {
                     type="button"
                     onClick={handleVerify}
                   >
-                    Verification
+                    Confirm
                   </button>
                 </div>
               </form>

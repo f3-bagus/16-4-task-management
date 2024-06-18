@@ -1,22 +1,18 @@
 import React, { useEffect, useState } from "react";
-import {
-  Calendar,
-  CheckSquare,
-  List,
-  Tag,
-  Trash,
-  Type,
-} from "react-feather";
-
+import { Calendar, CheckSquare, List, Tag, Trash, Type } from "react-feather";
 import Modal from "../../../components/Modal/Modal";
 import Editable from "../../../components/Editable/Editable";
 import PriorityDropdown from "./PriorityDropdown";
+
 import SubTask from "./SubTask/SubTask";
 
 import "./AddTask.css";
 
+const projects = ["Home", "Routines", "Inspiration"];
+
 function AddTask(props) {
   const [selectedPriority, setSelectedPriority] = useState("");
+  const [selectedProject, setSelectedProject] = useState(projects[0]); // Default to the first project
   const [values, setValues] = useState({
     title: props.card?.title || '',
     desc: props.card?.desc || '',
@@ -113,7 +109,6 @@ function AddTask(props) {
   return (
     <Modal onClose={closeModal} isOpen={isModalOpen}>
       <div className="cardinfo">
-        
 
         <div className="cardinfo_box">
           <div className="cardinfo_box_title">
@@ -141,35 +136,20 @@ function AddTask(props) {
           />
         </div>
 
-     <div className="cardinfo_box">
-        <div className="cardinfo_box_title">
-          <Calendar />
-          <p>Date</p>
+        <div className="cardinfo_box">
+          <div className="cardinfo_box_title">
+            <Calendar />
+            <p>Date</p>
+          </div>
+          <input
+            type="date"
+            defaultValue={values.date}
+            min={new Date().toISOString().substr(0, 10)}
+            onChange={(event) => updateDate(event.target.value)}
+          />
         </div>
-        <input
-          type="date"
-          defaultValue={values.date}
-          min={new Date().toISOString().substr(0, 10)}
-          onChange={(event) => updateDate(event.target.value)}
-        />
-      </div>
 
-      <div className=" cardinfo_box ">
-        <p >Frequency</p>
-        <select
-          id="frequency"
-          value={values.frequency}
-          onChange={(event) => updateFrequency(event.target.value)}
-        >
-          <option value="none">None</option>
-          <option value="daily">Daily</option>
-          <option value="weekly">Weekly</option>
-          <option value="monthly">Monthly</option>
-          <option value="yearly">Yearly</option>
-        </select>
-      </div>
-
-      <div className="cardinfo_box">
+        <div className="cardinfo_box">
           <div className="cardinfo_box_title">
             <Tag />
             <p>Priority</p>
@@ -180,6 +160,38 @@ function AddTask(props) {
           />
         </div>
 
+        <div className="cardinfo_box">
+          <p>Frequency</p>
+          <select
+            id="frequency"
+            value={values.frequency}
+            onChange={(event) => updateFrequency(event.target.value)}
+          >
+            <option value="none">None</option>
+            <option value="daily">Daily</option>
+            <option value="weekly">Weekly</option>
+            <option value="monthly">Monthly</option>
+            <option value="yearly">Yearly</option>
+          </select>
+        </div>
+
+        <div className="cardinfo_box">
+          <div className="cardinfo_box_title">
+            <Tag />
+            <p>Select Project</p>
+          </div>
+          <div className="project_dropdown">
+            <select
+              id="project"
+              value={selectedProject}
+              onChange={(event) => setSelectedProject(event.target.value)}
+            >
+              {projects.map((project, index) => (
+                <option key={index} value={project}>{project}</option>
+              ))}
+            </select>
+          </div>
+        </div>
 
         <div className="cardinfo_box">
           <div className="cardinfo_box_title">
@@ -224,7 +236,7 @@ function AddTask(props) {
         <SubTask onClose={closeSubTaskModal} />
       )}
     </div>
-      
+
     </Modal>
   );
 }

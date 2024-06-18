@@ -79,7 +79,7 @@ export default function OtpChangeEmail() {
                     type="button"
                     onClick={handleVerify}
                   >
-                    Verification
+                    Confirm
                   </button>
                 </div>
               </form>
