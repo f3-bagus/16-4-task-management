@@ -2,7 +2,7 @@ import React from "react";
 
 const priorities = [
   { text: "Low", color: "green" },
-  { text: "Medium", color: "yellow" },
+  { text: "Medium", color: "orange" },
   { text: "High", color: "red" },
 ];
 
