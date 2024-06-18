@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+
 export default function Register() {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordMatch, setPasswordMatch] = useState(true);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   const handlePasswordChange = (e) => {
@@ -16,12 +21,28 @@ export default function Register() {
     setPasswordMatch(e.target.value === password);
   };
 
-  const handleCreateAccount = () => {
+  const handleCreateAccount = async () => {
     if (passwordMatch) {
-      // Logika untuk pendaftaran
-      navigate("/auth/verify-account");
+      try {
+        const response = await axios.post(
+          "http://localhost:3000/api/register",
+          {
+            username,
+            email,
+            password,
+          }
+        );
+        if (response.data.success) {
+          navigate("/auth/verify-account");
+        } else {
+          setError(response.data.message);
+        }
+      } catch (err) {
+        setError("An error occurred. Please try again.");
+      }
     }
   };
+
   return (
     <>
       <div className="container mx-auto px-4 h-full">
@@ -34,19 +55,6 @@ export default function Register() {
                     Sign Up
                   </h6>
                 </div>
-                {/* <div className="btn-wrapper text-center">
-                  <button
-                    className="bg-white active:bg-blueGray-50 text-blueGray-700 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150"
-                    type="button"
-                  >
-                    <img
-                      alt="..."
-                      className="w-5 mr-1"
-                      src={require("../../assets/img/google.svg").default}
-                    />
-                    Google
-                  </button>
-                </div> */}
                 <hr className="mt-6 border-b-1 border-blueGray-300" />
               </div>
               <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
@@ -54,21 +62,23 @@ export default function Register() {
                   <div className="relative w-full mb-3">
                     <label
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                      htmlFor="grid-password"
+                      htmlFor="grid-username"
                     >
                       Username
                     </label>
                     <input
-                      type="email"
+                      type="text"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Username"
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
                     />
                   </div>
 
                   <div className="relative w-full mb-3">
                     <label
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                      htmlFor="grid-password"
+                      htmlFor="grid-email"
                     >
                       Email
                     </label>
@@ -76,6 +86,8 @@ export default function Register() {
                       type="email"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
 
@@ -115,6 +127,10 @@ export default function Register() {
                       </p>
                     )}
                   </div>
+
+                  {error && (
+                    <p className="text-red-500 text-xs italic mt-2">{error}</p>
+                  )}
 
                   <div className="text-center mt-6">
                     <button
