@@ -4,11 +4,20 @@ import { MoreHorizontal } from "react-feather";
 import Card from "../MainCard/Card";
 import Dropdown from "../Dropdown/Dropdown";
 import Editable from "../Editable/Editable";
-
+import AddTask from "../../views/admin/AddTask/AddTask"; // Import AddTask
 import "./Board.css";
 
 function Board(props) {
   const [showDropdown, setShowDropdown] = useState(false);
+  const [showAddTaskModal, setShowAddTaskModal] = useState(false); // State untuk modal
+
+  const openAddTaskModal = () => {
+    setShowAddTaskModal(true);
+  };
+
+  const closeAddTaskModal = () => {
+    setShowAddTaskModal(false);
+  };
 
   console.log("props in Board:", props); // Tambahkan log ini untuk debugging
 
@@ -34,6 +43,7 @@ function Board(props) {
           )}
         </div>
       </div>
+
       <div className="board_cards custom-scroll">
         {props.board?.cards?.map((item) => (
           <Card
@@ -46,15 +56,22 @@ function Board(props) {
             updateCard={props.updateCard}
           />
         ))}
-        <Editable
-          text="+ Add Task"
-          placeholder="Enter Task Title"
-          displayClass="board_add-card"
-          editClass="board_add-card_edit"
-          onSubmit={(value) => props.addCard(props.board?.id, value)}
-        />
+        
+        {/* Tombol untuk membuka modal AddTask */}
+        <button
+          className="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500 outline-none focus:outline-none"
+          onClick={openAddTaskModal}
+        >
+          <i className="fa-solid fa-plus mr-2 text-sm outline-none focus:outline-none"></i>
+          Add Task
+        </button>
       </div>
+      {/* Modal AddTask */}
+      {showAddTaskModal && (
+        <AddTask onClose={closeAddTaskModal} />
+      )}
     </div>
+
   );
 }
 
