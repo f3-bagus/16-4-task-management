@@ -16,7 +16,9 @@ export default function VerifyAcc() {
             </div>
             <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
               <div className="text-blueGray-400 text-center mb-3 font-bold">
-                <small>Please verify your email address</small>
+                <small>
+                  User registered, please check your email for verification link
+                </small>
               </div>
             </div>
           </div>

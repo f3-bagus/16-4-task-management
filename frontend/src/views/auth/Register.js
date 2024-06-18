@@ -8,7 +8,7 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordMatch, setPasswordMatch] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handlePasswordChange = (e) => {
@@ -25,24 +25,32 @@ export default function Register() {
     if (passwordMatch) {
       try {
         const response = await axios.post(
-          "http://localhost:3000/api/register",
+          "http://localhost:3000/api/auth/register",
           {
             username,
             email,
             password,
+            confirmPassword,
           }
         );
-        if (response.data.success) {
-          navigate("/auth/verify-account");
-        } else {
-          setError(response.data.message);
-        }
+        navigate("/auth/verify-account");
       } catch (err) {
-        setError("An error occurred. Please try again.");
+        if (err.response) {
+          const errorMessage =
+            err.response.data.message ||
+            (err.response.data.errors &&
+              err.response.data.errors.map((error) => error.msg).join(", "));
+          setError(`${errorMessage || "Username or Email already registered"}`);
+        } else if (err.request) {
+          setError(
+            "No response received from server. Please check your connection and try again."
+          );
+        } else {
+          setError(`Error occurred: ${err.message}`);
+        }
       }
     }
   };
-
   return (
     <>
       <div className="container mx-auto px-4 h-full">
@@ -123,7 +131,7 @@ export default function Register() {
                     />
                     {!passwordMatch && (
                       <p className="text-red-500 text-xs italic mt-2">
-                        Password tidak cocok.
+                        Password doesn't match
                       </p>
                     )}
                   </div>

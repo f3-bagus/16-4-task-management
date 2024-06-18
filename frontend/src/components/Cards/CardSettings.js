@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import Blank from "../../assets/img/blank.png";
 
 export default function CardSettings() {
-  const [isEditingUsername, setIsEditingUsername, isEditingEmail, setIsEditingEmail] = useState(false);
+  const [
+    isEditingUsername,
+    setIsEditingUsername,
+    isEditingEmail,
+    setIsEditingEmail,
+  ] = useState(false);
   const [username, setUsername] = useState("lucky.jesse");
   const [profilePic, setProfilePic] = useState(Blank);
 
@@ -28,7 +33,7 @@ export default function CardSettings() {
     }
   };
 
-    const handleEmailEdit = () => {
+  const handleEmailEdit = () => {
     setIsEditingEmail(!isEditingEmail);
   };
 
@@ -53,7 +58,10 @@ export default function CardSettings() {
                     alt="Profile"
                     className="shadow-xl rounded-full h-auto align-middle border-none max-w-150-px"
                   />
-                  <label htmlFor="profilePicUpload" className="edit-pic absolute bottom-0 right-0 bg-gray-600 text-white rounded-full p-2 cursor-pointer">
+                  <label
+                    htmlFor="profilePicUpload"
+                    className="edit-pic absolute bottom-0 right-0 bg-gray-600 text-white rounded-full p-2 cursor-pointer"
+                  >
                     <FontAwesomeIcon color="black" icon={faEdit} />
                   </label>
                   <input
@@ -112,9 +120,6 @@ export default function CardSettings() {
             <hr className="mt-20 mb-6 border-b-2border-blueGray-300" />
 
             <div className="flex flex-wrap justify-end">
-
-
-
               <div className="flex flex-wrap">
                 <div className="w-full lg:w-12/12 px-4">
                   <div className="relative w-full mb-3">
@@ -129,7 +134,6 @@ export default function CardSettings() {
                 </div>
               </div>
 
-
               <div className="flex flex-wrap">
                 <div className="w-full lg:w-12/12 px-4">
                   <div className="relative w-full mb-3">
@@ -143,8 +147,6 @@ export default function CardSettings() {
                   </div>
                 </div>
               </div>
-
-
             </div>
           </form>
         </div>
