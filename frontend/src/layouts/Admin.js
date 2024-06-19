@@ -1,6 +1,6 @@
-// Admin.js
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
+import PrivateRoute from "../components/PrivateRoute/PrivateRoute.js"; // Adjust the path as needed
 
 // components
 import Sidebar from "../components/Sidebar/Sidebar";
@@ -18,11 +18,6 @@ import History from "../views/admin/History.js";
 import DetailProject from "../components/DetailProject/DetailProject.js";
 
 export default function Admin() {
-  const addCard = (boardId, taskTitle) => {
-    console.log("Adding task to board:", boardId, "with title:", taskTitle);
-    // Add your logic to handle adding a task to a board here
-  };
-
   return (
     <>
       <Sidebar />
@@ -31,14 +26,70 @@ export default function Admin() {
       <div className="relative md:ml-64 bg-blueGray-100">
         <div className="px-4 md:px-10 mx-auto w-full -m-24">
           <Routes>
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/maps" element={<Maps />} />
-            <Route path="/today" element={<Today />} />
-            <Route path="/upcoming" element={<Upcoming />} />
-            <Route path="/history" element={<History />} />
-            <Route path="/setting" element={<AkunSetting />} />
-            <Route path="/myproject" element={<Myproject />} />
-            <Route path="/detailproject" element={<DetailProject />} />
+            <Route
+              path="/dashboard"
+              element={
+                <PrivateRoute>
+                  <Dashboard />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/maps"
+              element={
+                <PrivateRoute>
+                  <Maps />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/today"
+              element={
+                <PrivateRoute>
+                  <Today />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/upcoming"
+              element={
+                <PrivateRoute>
+                  <Upcoming />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/history"
+              element={
+                <PrivateRoute>
+                  <History />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/setting"
+              element={
+                <PrivateRoute>
+                  <AkunSetting />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/myproject"
+              element={
+                <PrivateRoute>
+                  <Myproject />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/detailproject"
+              element={
+                <PrivateRoute>
+                  <DetailProject />
+                </PrivateRoute>
+              }
+            />
 
             <Route path="*" element={<Navigate to="/dashboard" />} />
           </Routes>
