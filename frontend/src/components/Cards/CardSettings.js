@@ -4,10 +4,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import Blank from "../../assets/img/blank.png";
 import axios from "axios";
-export default function CardSettings() {
-  const [email, setEmail] = React.useState("");
 
-  React.useEffect(() => {
+export default function CardSettings() {
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("lucky.jesse");
+  const [profilePic, setProfilePic] = useState(Blank);
+  const [isEditingUsername, setIsEditingUsername] = useState(false);
+  const [isEditingEmail, setIsEditingEmail] = useState(false);
+
+  useEffect(() => {
     const fetchUserProfile = async () => {
       try {
         const token = localStorage.getItem("token");
@@ -23,25 +28,43 @@ export default function CardSettings() {
           }
         );
         setUsername(response.data.user.username);
-        setEmail(response.data.user.email); // tambahkan baris ini
+        setEmail(response.data.user.email);
       } catch (error) {
         console.error("Failed to fetch user profile:", error);
       }
     };
     fetchUserProfile();
   }, []);
+  const updateUsername = async (newUsername) => {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        throw new Error("Token not found");
+      }
 
-  const [
-    isEditingUsername,
-    setIsEditingUsername,
-    isEditingEmail,
-    setIsEditingEmail,
-  ] = useState(false);
-  const [username, setUsername] = useState("lucky.jesse");
-  const [profilePic, setProfilePic] = useState(Blank);
+      const response = await axios.put(
+        "http://localhost:3000/api/users/profile",
+        { username: newUsername }, // hanya mengirim username yang baru
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      console.log("Username updated successfully:", response.data);
+      setIsEditingUsername(false); // Exit editing mode after successful update
+    } catch (error) {
+      console.error("Failed to update username:", error);
+    }
+  };
 
   const handleUsernameEdit = () => {
-    setIsEditingUsername(!isEditingUsername);
+    if (isEditingUsername) {
+      updateUsername(username);
+    } else {
+      setIsEditingUsername(true);
+    }
   };
 
   const handleUsernameChange = (event) => {
@@ -57,10 +80,6 @@ export default function CardSettings() {
       };
       reader.readAsDataURL(file);
     }
-  };
-
-  const handleEmailEdit = () => {
-    setIsEditingEmail(!isEditingEmail);
   };
 
   return (
@@ -133,7 +152,6 @@ export default function CardSettings() {
                     id="grid-email"
                     value={email}
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    defaultValue="jesse@example.com"
                     disabled={!isEditingEmail}
                   />
                 </div>
@@ -146,7 +164,6 @@ export default function CardSettings() {
               <div className="flex flex-wrap">
                 <div className="w-full lg:w-12/12 px-4">
                   <div className="relative w-full mb-3">
-                    {/* Menggunakan Link untuk mengarahkan ke rute "/change-password" */}
                     <Link
                       to="/auth/ChangePassword"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
@@ -160,7 +177,6 @@ export default function CardSettings() {
               <div className="flex flex-wrap">
                 <div className="w-full lg:w-12/12 px-4">
                   <div className="relative w-full mb-3">
-                    {/* Menggunakan Link untuk mengarahkan ke rute "/change-password" */}
                     <Link
                       to="/auth/ChangeEmail"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
